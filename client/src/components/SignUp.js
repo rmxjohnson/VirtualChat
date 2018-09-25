@@ -2,7 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import SelectUSState from 'react-select-us-states';
-import ImagesUploader from 'react-images-uploader';
+import ImageUploader from 'react-images-upload';
+//import ImagesUploader from 'react-images-uploader';
 import 'react-images-uploader/styles.css';
 import 'react-images-uploader/font.css';
 
@@ -15,23 +16,36 @@ export default class Signup extends React.Component {
         yourname: '',
         age: '',
         city: '',
-        yourstate: '',
-        profilepic: ''
+        yourstate: 'OH',
+        profilepic: '',
+        pictures: []
     };
+
+    // constructor(props) {
+    //     super(props);
+
+    //     this.onDrop = this.onDrop.bind(this);
+    // }
+
+    onDrop(picture) {
+        this.setState({
+            pictures: this.state.pictures.concat(picture),
+        });
+    }
 
     // componentDidMount = () => {
 
     // }
 
-    constructor(props) {
-        super(props);
+    // constructor(props) {
+    //     super(props);
 
-        this.setNewValue = this.setNewValue.bind(this);
-    }
+    //     this.setNewValue = this.setNewValue.bind(this);
+    // }
 
-    setNewValue(newValue) {
-        console.log('this is the State code:' + newValue);
-    }
+    // setNewValue(newValue) {
+    //     console.log('this is the State code:' + newValue);
+    // }
 
     handleChange = (event) => {
         const name = event.target.name;
@@ -40,25 +54,81 @@ export default class Signup extends React.Component {
         this.setState({ [name]: value });
     }
 
+    handleChangeUSState = (event) => {
+        console.log("event : ", event);
+        // const name = event.target.name;
+        // console.log("Handle Change name ", name);
+        const value = event;
+        console.log("Handle change Value: ", value);
+
+        this.setState({ yourstate: value });
+        // console.log('Changing State of residence: ', this.state);
+    }
+
+    clearFields = () => {
+        // event.preventDefault();
+        console.log("I am in clear fields");
+        document.getElementById("signup-form").reset();
+        this.setState({
+            displayname: '',
+            email: '',
+            password: '',
+            yourname: '',
+            age: '',
+            city: '',
+            yourstate: 'OH',
+            profilepic: '',
+            // pictures: []
+        });
+    }
+
     onSubmit = (event) => {
         event.preventDefault();
         const email = this.state.email;
         const password = this.state.password;
 
+        console.log("data to submit", this.state);
+
         axios({
             url: '/signup',
             method: 'POST',
             data: {
+                displayname: this.state.displayname,
                 email: this.state.email,
-                password: this.state.password
+                password: this.state.password,
+                yourname: this.state.yourname,
+                age: this.state.age,
+                city: this.state.city,
+                yourstate: this.state.yourstate,
+                profilepic: this.state.profilepic,
+                // pictures: this.state.pictures
             }
         })
+
             .then((response) => {
-                alert('SignUp Successful')
+                console.log("response modified", response);
+
+                console.log(' Response.data.status', response.data.status);
+                switch (response.data.status) {
+                    // console.log(' Response.data.status', response.status);
+                    // switch (response.status) {
+                    case 200:
+                        alert('SignUp Successful');
+                        this.clearFields();
+                        console.log("After ClearFields");
+                        break;
+                    case 500:
+                        alert('Invalid field values. ');
+                        break;
+                    default:
+                        alert('Other status: ', response.data.status);
+                }
+                alert('SignUp Request was successful');
                 console.log("SignUp Response = ", response);
             })
             .catch((err) => {
-                alert('Not able to SignUp - try again');
+                console.log('catch error', err);
+                alert('Error in SignUp Request');
             });
     }
 
@@ -75,14 +145,14 @@ export default class Signup extends React.Component {
                     <br />
                     <Link to='/profile'>Go to Profile</Link>
                     <h2>SignUp Form</h2>
-                    <form onSubmit={this.onSubmit}>
+                    <form onSubmit={this.onSubmit} id="signup-form">
                         <div>
                             <label htmlFor=""></label>
                             <input type="text" name='displayname' placeholder='Display Name' required onChange={this.handleChange} />
                         </div>
                         <div>
                             <label htmlFor=""></label>
-                            <input type="email" name='email' placeholder='email' required onChange={this.handleChange} />
+                            <input type="email" name='email' placeholder='email (your login id)' required onChange={this.handleChange} />
                         </div>
                         <div>
                             <label htmlFor=""></label>
@@ -103,15 +173,29 @@ export default class Signup extends React.Component {
                         <div>
                             <label htmlFor="">Select a State</label>
                             <br />
-                            {/* <input type="string" name='location' placeholder='state' required onChange={this.handleChange} /> */}
+                            {/* <input type="string" name='yourstate' placeholder='state' required onChange={this.handleChange} /> */}
+                            <SelectUSState id="myId" className="myClassName" required onChange={this.handleChangeUSState} />
 
-                            <SelectUSState name='yourstate' id="myId" className="myClassName" required onChange={this.setNewValue} />
+
 
                         </div>
+
+                        {/* <div>
+                            <p>Something here</p>
+                            <ImageUploader
+                                withIcon={true}
+                                withPreview={true}
+                                buttonText='Choose Profile Picture'
+                                onChange={this.onDrop}
+                                imgExtension={['.jpg', '.gif', '.png', '.gif']}
+                                maxFileSize={5242880}
+                                singleImage={true}
+                            />
+                        </div> */}
                         <div>
                             <label htmlFor=""></label>
-                            {/* <input type="string" name='profilepic' placeholder='profile image' required onChange={this.handleChange} /> */}
-                            <ImagesUploader
+                            <input type="string" name='profilepic' placeholder='profile image' required onChange={this.handleChange} />
+                            {/* <ImagesUploader
                                 url="http://localhost:3000/notmultiple"
                                 optimisticPreviews
                                 multiple={false}
@@ -121,9 +205,9 @@ export default class Signup extends React.Component {
                                     }
                                 }}
                                 label="Upload a picture"
-                            />
+                            /> */}
                         </div>
-                        <button>Submit</button>
+                        <button>Submit</button><button type="button" onClick={this.clearFields}>Cancel</button>
                     </form>
                 </div>
             </div>

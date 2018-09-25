@@ -4,8 +4,12 @@ var mongoose = require("mongoose");
 // Create Schema class
 var Schema = mongoose.Schema;
 
-// Create article schema
+// Create new user schema
 var UserSchema = new Schema({
+    displayname: {
+        type: String,
+        required: true,
+    },
     email: {
         type: String,
         required: true,
@@ -14,6 +18,30 @@ var UserSchema = new Schema({
     password: {
         type: String,
         required: true
+    },
+    yourname: {
+        type: String,
+        required: true
+    },
+    age: {
+        type: Number,
+        // min: 18,
+        // max: 150,
+        required: true
+    },
+    city: {
+        type: String,
+        required: true
+    },
+    yourstate: {
+        type: String
+    },
+    profilepic: {
+        type: String,
+        required: true
+    },
+    pictures: {
+        type: Array
     }
 });
 

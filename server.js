@@ -32,10 +32,44 @@ app.get('/about', (req, res) => {
 
 // Authentication Routes
 
+// app.get("/profile", function (req, res) {
+//     console.log('inside of get the profile');
+//     res.json({
+//         message: `I am in the get profile route where I don't want to be`
+//     });
+
+// });
+
+app.get('/profile/:email', function (req, res) {
+    console.log('inside of get the profile with email');
+    console.log('params', req.params.email);
+    User.findOne({ email: req.params.email })
+        .exec(function (err, doc) {
+            if (err) {
+                console.log("Error finding profile: ", err);
+            }
+            else {
+                console.log('Profile Document', doc);
+                res.json(doc);
+            }
+        });
+});
+
+
 app.post('/signup', (req, res) => {
     const data = req.body;
+
+    const displayname = data.displayname;
     const email = data.email;
     const password = data.password;
+    const yourname = data.yourname;
+    const age = data.age;
+    const city = data.city;
+    const yourstate = data.yourstate;
+    const profilepic = data.profilepic;
+    const pictures = data.pictures;
+    // const emailexistsmsg = { customMessage: 'this email already exists' };
+
     console.log("SignUp Data = ", data);
 
     // to encrypt user password    
@@ -47,18 +81,35 @@ app.post('/signup', (req, res) => {
         .then(() => {
 
             User.create({
+                displayname: displayname,
                 email: email,
-                password: encryptedPassword
+                password: encryptedPassword,
+                yourname: yourname,
+                age: age,
+                city: city,
+                yourstate: yourstate,
+                profilepic: profilepic,
+                // pictures: pictures
             })
                 .then(function () {
-                    res.cookie('email', email).json({
-                        // res.json({
+                    // res.cookie('email', email).json({
+                    console.log("I am in the then");
+                    res.json({
+                        status: 200,
                         message: 'Success - New User Created'
                     })
                 })
-                .catch(function () {
-                    res.status(500).json({
-                        message: 'Error - New User NOT Created' // not unique email
+
+                .catch(function (err) {
+                    // res.customMessage = emailexistsmsg;
+                    // res.status(500).json(emailexistsmsg)
+                    // res.status(500).json({
+                    console.log("I am in the catch", err);
+                    // res.json({
+                    res.json({
+                        status: 500,
+                        message: 'Error - New User NOT Created', // not unique email
+                        // customMessage: 'Error - this email already used'
                     })
                 });
 
@@ -70,6 +121,7 @@ app.post('/signup', (req, res) => {
         .catch(() => {
             res.status(500).json({
                 message: 'We were not able to create the user'
+
             });
 
         });
