@@ -184,18 +184,10 @@ app.post('/login', (req, res) => {
 app.post('/updateprofile', (req, res) => {
     const data = req.body;
 
-    // const displayname = data.displayname;
-    // const email = data.email;
-    // const yourname = data.yourname;
-    // const age = data.age;
-    // const city = data.city;
-    // const yourstate = data.yourstate;
-    // const profilepic = data.profilepic;
     console.log("Change Profile Data = ", data);
     const lowerEmail = data.email.toLowerCase();
 
     User.updateOne(
-        //{ email: data.email }, //filter
         { email: lowerEmail }, //filter
         {
             // fields updated
