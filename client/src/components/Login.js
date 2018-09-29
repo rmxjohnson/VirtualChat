@@ -8,11 +8,15 @@ import Profile from './Profile';
 
 
 export default class Login extends React.Component {
+
     state = {
         email: '',
         password: '',
         validLoggin: false,
-        profile: {}
+        profile: {},
+
+        isSubmitButtonDisabled: false
+
 
     };
 
@@ -26,6 +30,13 @@ export default class Login extends React.Component {
 
     // }
 
+    handleSignUp() {
+        window.location = "/signup";
+        // window.location = "/" + newURL;
+    }
+
+
+
     handleChange = (event) => {
         const name = event.target.name;
         const value = event.target.value;
@@ -37,6 +48,11 @@ export default class Login extends React.Component {
         event.preventDefault();
         const email = this.state.email;
         const password = this.state.password;
+
+        // disable the Submit button
+        this.setState({
+            isSubmitButtonDisabled: true
+        });
 
         axios({
             url: '/login',
@@ -50,50 +66,42 @@ export default class Login extends React.Component {
                 alert('It is working, you are logged in');
                 console.log('Login Response = ', response);
                 console.log("login response.data = ", response.data)
+                this.setState({
+                    isButtonDisabled: false
+                });
 
-
-                // axios.get('/profile/', {
-                //     params: {
-                //         email: email
-                //     }
-                // axios.get('/profile', {
-
-
-                // })
                 axios.get(`/profile/${email}`)
                     .then((res2) => {
                         console.log("Profile info");
                         console.log(res2);
                         this.setState({ validLoggin: true, profile: res2.data });
                         console.log("loggin boolean", this.state.validLoggin)
-
-                        console.log("after redirect");
-
-
-
-
                     })
                     .catch(function (error) {
                         console.log('Error getting the profile on login', error);
                         console.log('getting profile error response= ', error.response.data.message);
                     });
-
-
-
             })
             .catch((err) => {
-                alert('Not able to log in - try again');
+                // Error on LogIn
+                this.setState({
+                    isSubmitButtonDisabled: false
+                });
+                alert(err.response.data.message);
                 console.log('login error = ', err);
                 console.log('login error response= ', err.response.data.message);
                 console.log("error message", err.message);
             });
     }
 
+
+
     render() {
 
         console.log('State: ', this.state);
         if (this.state.validLoggin) {
             console.log("In the IF statement", this.state.profile);
+            // if valid LogIn, redirect to the profile page
             return (<Redirect to={{
                 pathname: '/profile',
                 state: this.state.profile
@@ -101,7 +109,6 @@ export default class Login extends React.Component {
         }
         return (
             <div>
-
                 <div>
                     <Link to='/'>Go to Home</Link>
                     <br />
@@ -112,13 +119,16 @@ export default class Login extends React.Component {
                     <form onSubmit={this.onSubmit}>
                         <div>
                             <label htmlFor=""></label>
-                            <input type="email" name='email' placeholder='email' onChange={this.handleChange} />
+                            <input type="email" name='email' placeholder='email (for log-in)' onChange={this.handleChange} />
                         </div>
                         <div>
                             <label htmlFor=""></label>
                             <input type="password" name='password' placeholder='password' onChange={this.handleChange} />
                         </div>
-                        <button>Submit</button>
+                        <button disabled={this.state.isSubmitButtonDisabled}>Submit</button>
+                        <br />
+                        <button type="button" onClick={this.handleSignUp}>SignUp</button>
+
                     </form>
                 </div>
             </div>

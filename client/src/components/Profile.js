@@ -1,25 +1,33 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
+import axios from 'axios';
+import SelectUSState from 'react-select-us-states';
 
 export default class Profile extends React.Component {
 
     // componentDidMount = () => {
 
     // }
+
+
     constructor(props) {
         super(props);
-        this.state = {
+        this.initialState = {
             age: props.location.state.age,
             displayname: props.location.state.displayname,
             email: props.location.state.email,
             password: props.location.state.password,
             yourname: props.location.state.yourname,
-            city: this.props.location.state.city,
+            city: props.location.state.city,
             yourstate: props.location.state.yourstate,
-            profilepic: props.location.state.profilepic
+            profilepic: props.location.state.profilepic,
+            isUpdateButtonDisabled: false
+        };
 
-        }
+        // set state to the initial state
+        this.state = this.initialState;
+        // this.state = { ...this.initialState };
+        // const originalState = this.state;
         console.log("In the constructor", this.props.location) //undefined
 
         console.log("name ", this.props.location.state.displayname);
@@ -30,12 +38,96 @@ export default class Profile extends React.Component {
         console.log("age ", this.props.location.state.age);
         console.log("yourstate ", this.props.location.state.yourstate);
         console.log("profilepic ", this.props.location.state.profilepic);
+
+        // console.log("Original State = ", originalState);
+    }
+
+    handleChange = (event) => {
+        const name = event.target.name;
+        const value = event.target.value;
+
+        this.setState({ [name]: value });
+    }
+
+    handleChangeUSState = (event) => {
+        console.log("us state event : ", event);
+        // const name = event.target.name;
+        // console.log("Handle Change name ", name);
+        const value = event;
+        console.log("Handle change state Value: ", value);
+
+        this.setState({ yourstate: value });
+        // console.log('Changing State of residence: ', this.state);
+    }
+
+    // reset fields to initial values when 'Cancel'
+    resetFields = () => {
+        // event.preventDefault();
+        console.log("I am in reset fields");
+        console.log('Initial State = ', this.initialState);
+        console.log('Initial State displayname= ', this.initialState.displayname);
+        this.setState(this.initialState);
+    }
+
+    // when user selects "Update Profile"
+    onSubmit = (event) => {
+        event.preventDefault();
+
+        //disable the update button
+        this.setState({
+            isUpdateButtonDisabled: true
+        });
+
+        console.log("data to submit to change profile", this.state);
+
+        // route to update profile
+        axios({
+            url: '/updateprofile',
+            method: 'POST',
+            data: {
+                displayname: this.state.displayname,
+                email: this.state.email,
+                yourname: this.state.yourname,
+                age: this.state.age,
+                city: this.state.city,
+                yourstate: this.state.yourstate,
+                profilepic: this.state.profilepic
+            }
+        })
+
+            .then((response) => {
+                console.log("response modified", response);
+
+                console.log(' Response.data.status', response.status);
+
+                alert(response.data.message);
+                console.log("Change Profile Response = ", response);
+                console.log("Change profile message = ", response.data.message);
+
+                // enable the update button
+                this.setState({
+                    isUpdateButtonDisabled: false
+                });
+
+                // reset the initial state to the current state
+                this.initialState = this.state;
+                console.log("New Initial State = ", this.initialState);
+            })
+            .catch((err) => {
+                console.log('catch error', err);
+                alert('Error in profile change  Request');
+            });
     }
 
 
+
     render() {
+
+
+        // console.log("Original State = ", originalState);
         console.log("I am in the profile page");
         console.log("profile props = ", this.props.location.state.profile);
+        console.log('Render State: ', this.state);
         return (
             <div>
                 <h2>Profile Component</h2>
@@ -51,36 +143,37 @@ export default class Profile extends React.Component {
                     </div>
                 </form>  */}
                 <h2>profile Form</h2>
-                <form id="profile-form">
+                <form onSubmit={this.onSubmit} id="profile-form">
                     <div>
-                        <label htmlFor="">Display Name</label>
-                        <input type="text" name='displayname' placeholder='Display Name' defaultValue={this.state.displayname} />
-                    </div>
-                    <div>
-                        <label htmlFor="">email</label>
+                        <label htmlFor="">Email</label>
                         <input type="email" name='email' placeholder='email' defaultValue={this.state.email} disabled />
                     </div>
-                    <div>
+                    {/* <div>
                         <label htmlFor="">Password</label>
-                        <input type="password" name='password' placeholder='password' defaultValue={this.state.password} />
+                        <input type="password" name='password' placeholder='password' defaultValue={this.state.password} disabled />
+                    </div> */}
+                    <div>
+                        <label htmlFor="">Display Name</label>
+                        <input type="text" name='displayname' placeholder='Display Name' value={this.state.displayname} required onChange={this.handleChange} />
                     </div>
+
                     <div>
                         <label htmlFor="">Your Name</label>
-                        <input type="text" name='yourname' placeholder='Your Name (First and Last)' defaultValue={this.state.yourname} />
+                        <input type="text" name='yourname' placeholder='Your Name (First and Last)' value={this.state.yourname} required onChange={this.handleChange} />
                     </div>
                     <div>
                         <label htmlFor="">Age</label>
-                        <input type="number" name='age' placeholder='age' defaultValue={this.state.age} />
+                        <input type="number" name='age' placeholder='age' value={this.state.age} required onChange={this.handleChange} />
                     </div>
                     <div>
                         <label htmlFor="">City</label>
-                        <input type="string" name='city' placeholder='city' defaultValue={this.state.city} />
+                        <input type="string" name='city' placeholder='city' value={this.state.city} required onChange={this.handleChange} />
                     </div>
                     <div>
                         <label htmlFor="">Select a State</label>
                         <br />
-                        <input type="string" name='yourstate' placeholder='state' defaultValue={this.state.yourstate} />
-                        {/* <SelectUSState id="myId" className="myClassName" required onChange={this.handleChangeUSState} /> */}
+                        <input type="string" name='yourstate' placeholder='state' value={this.state.yourstate} required onChange={this.handleChangeUSState} />
+                        <SelectUSState id="stateId" className="myClassName" value={this.state.yourstate} required onChange={this.handleChangeUSState} />
 
 
 
@@ -88,13 +181,13 @@ export default class Profile extends React.Component {
 
                     <div>
                         <label htmlFor="">Profile Pic</label>
-                        <input type="string" name='profilepic' placeholder='profile image' defaultValue={this.state.profilepic} />
+                        <input type="string" name='profilepic' placeholder='profile image' value={this.state.profilepic} required onChange={this.handleChange} />
                         <div>
-                            <img alt='my-picture' src={this.state.profilepic} />
+                            <img alt='profile-picture' src={this.state.profilepic} style={{ height: 100, width: 100 }} />
                         </div>
 
                     </div>
-                    <button>Submit</button><button type="button" >Cancel</button>
+                    <button disabled={this.state.isUpdateButtonDisabled}>Update Profile</button><button type="button" onClick={this.resetFields} >Cancel</button>
                 </form>
 
             </div>

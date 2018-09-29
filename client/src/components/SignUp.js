@@ -18,6 +18,7 @@ export default class Signup extends React.Component {
         city: '',
         yourstate: 'OH',
         profilepic: '',
+        isSubmitButtonDisabled: false,
         pictures: []
     };
 
@@ -86,6 +87,9 @@ export default class Signup extends React.Component {
         event.preventDefault();
         const email = this.state.email;
         const password = this.state.password;
+        this.setState({
+            isSubmitButtonDisabled: true
+        });
 
         console.log("data to submit", this.state);
 
@@ -114,6 +118,9 @@ export default class Signup extends React.Component {
                     // switch (response.status) {
                     case 200:
                         alert('SignUp Successful');
+                        // this.setState({
+                        //     isSubmitButtonDisabled: false
+                        // });
                         this.clearFields();
                         console.log("After ClearFields");
                         break;
@@ -123,13 +130,21 @@ export default class Signup extends React.Component {
                     default:
                         alert('Other status: ', response.data.status);
                 }
+                this.setState({
+                    isSubmitButtonDisabled: false
+                });
+
                 alert('SignUp Request was successful');
                 console.log("SignUp Response = ", response);
             })
             .catch((err) => {
                 console.log('catch error', err);
                 alert('Error in SignUp Request');
+                this.setState({
+                    isSubmitButtonDisabled: false
+                });
             });
+
     }
 
     render() {
@@ -148,16 +163,17 @@ export default class Signup extends React.Component {
                     <form onSubmit={this.onSubmit} id="signup-form">
                         <div>
                             <label htmlFor=""></label>
-                            <input type="text" name='displayname' placeholder='Display Name' required onChange={this.handleChange} />
-                        </div>
-                        <div>
-                            <label htmlFor=""></label>
-                            <input type="email" name='email' placeholder='email (your login id)' required onChange={this.handleChange} />
+                            <input type="email" name='email' placeholder='email (used for log-in)' required onChange={this.handleChange} />
                         </div>
                         <div>
                             <label htmlFor=""></label>
                             <input type="password" name='password' placeholder='password' required onChange={this.handleChange} />
                         </div>
+                        <div>
+                            <label htmlFor=""></label>
+                            <input type="text" name='displayname' placeholder='Display Name' required onChange={this.handleChange} />
+                        </div>
+
                         <div>
                             <label htmlFor=""></label>
                             <input type="text" name='yourname' placeholder='Your Name (First and Last)' required onChange={this.handleChange} />
@@ -194,7 +210,7 @@ export default class Signup extends React.Component {
                         </div> */}
                         <div>
                             <label htmlFor=""></label>
-                            <input type="string" name='profilepic' placeholder='profile image' required onChange={this.handleChange} />
+                            <input type="string" name='profilepic' placeholder='profile image (must be url)' required onChange={this.handleChange} />
                             {/* <ImagesUploader
                                 url="http://localhost:3000/notmultiple"
                                 optimisticPreviews
@@ -207,7 +223,7 @@ export default class Signup extends React.Component {
                                 label="Upload a picture"
                             /> */}
                         </div>
-                        <button>Submit</button><button type="button" onClick={this.clearFields}>Cancel</button>
+                        <button disabled={this.state.isSubmitButtonDisabled}>Submit</button><button type="button" onClick={this.clearFields}>Cancel</button>
                     </form>
                 </div>
             </div>

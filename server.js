@@ -3,8 +3,6 @@ const app = require('express')();
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const bcrypt = require('bcryptjs');
-const cookieParser = require('cookie-parser');
-
 
 mongoose.connect('mongodb://localhost/my_db', { useNewUrlParser: true });
 
@@ -14,7 +12,6 @@ const PORT = process.env.PORT || 9000;
 // Use body-parser for handling form submissions
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(cookieParser());
 
 // Routes - Server
 app.get('/', (req, res) => {
@@ -32,21 +29,22 @@ app.get('/about', (req, res) => {
 
 // Authentication Routes
 
-// app.get("/profile", function (req, res) {
-//     console.log('inside of get the profile');
-//     res.json({
-//         message: `I am in the get profile route where I don't want to be`
-//     });
-
-// });
-
 app.get('/profile/:email', function (req, res) {
     console.log('inside of get the profile with email');
     console.log('params', req.params.email);
-    User.findOne({ email: req.params.email })
+
+    // convert email input to lower case
+    const lowerEmail = req.params.email.toLowerCase();
+
+    User.findOne({ email: lowerEmail })
         .exec(function (err, doc) {
             if (err) {
                 console.log("Error finding profile: ", err);
+                res.json({
+                    status: 500,
+                    message: 'Error finding profile for current login', // not unique email
+                    // customMessage: 'Error - this email already used'
+                })
             }
             else {
                 console.log('Profile Document', doc);
@@ -68,7 +66,10 @@ app.post('/signup', (req, res) => {
     const yourstate = data.yourstate;
     const profilepic = data.profilepic;
     const pictures = data.pictures;
-    // const emailexistsmsg = { customMessage: 'this email already exists' };
+
+    // convert email to lower case
+    const lowerEmail = data.email.toLowerCase();
+
 
     console.log("SignUp Data = ", data);
 
@@ -81,19 +82,21 @@ app.post('/signup', (req, res) => {
         .then(() => {
 
             User.create({
-                displayname: displayname,
-                email: email,
+                displayname: data.displayname,
+                email: lowerEmail,
+                // email: data.email,
+                //password: password,
                 password: encryptedPassword,
-                yourname: yourname,
-                age: age,
-                city: city,
-                yourstate: yourstate,
-                profilepic: profilepic,
+                yourname: data.yourname,
+                age: data.age,
+                city: data.city,
+                yourstate: data.yourstate,
+                profilepic: data.profilepic,
                 // pictures: pictures
             })
                 .then(function () {
                     // res.cookie('email', email).json({
-                    console.log("I am in the then");
+                    console.log("I am in the then creating a user");
                     res.json({
                         status: 200,
                         message: 'Success - New User Created'
@@ -104,7 +107,7 @@ app.post('/signup', (req, res) => {
                     // res.customMessage = emailexistsmsg;
                     // res.status(500).json(emailexistsmsg)
                     // res.status(500).json({
-                    console.log("I am in the catch", err);
+                    console.log("I am in the catch creating the user", err);
                     // res.json({
                     res.json({
                         status: 500,
@@ -136,20 +139,28 @@ app.post('/signup', (req, res) => {
 app.post('/login', (req, res) => {
     const data = req.body;
     const email = data.email;
-    const password = data.password;  // plain password
+
+    const password = data.password;  // plain text password
     console.log("Login Data = ", data);
-    const cookiesData = req.cookies;
+    const isPasswordValid = false;
 
-    console.log("Cookies = ", cookiesData);
+    // convert email to lower case
+    const lowerEmail = data.email.toLowerCase();
 
-    User.findOne({ email: data.email })
+    User.findOne({ email: lowerEmail })
         .then((user) => {
             console.log("User = ", user);
 
             // Load hash from your password DB.
             const isPasswordValid = bcrypt.compareSync(password, user.password); // true
+            console.log("Password = ", password);
+            console.log('user.password = ', user.password);
+            // if (password === user.password) {
+            //     isPasswordValid = true;
+            // } // true
 
             // if valid password
+            console.log("Ispasswordvalid = ", isPasswordValid);
             if (isPasswordValid) {
                 res.json({
                     message: 'Success - valid user and password',
@@ -165,13 +176,63 @@ app.post('/login', (req, res) => {
         })
         .catch(() => {
             res.status(500).json({
-                message: "No user found with this email"
+                message: "No user found with this email:\nPlease Signup as a new user"
             })
         });
+});
 
+app.post('/updateprofile', (req, res) => {
+    const data = req.body;
+
+    // const displayname = data.displayname;
+    // const email = data.email;
+    // const yourname = data.yourname;
+    // const age = data.age;
+    // const city = data.city;
+    // const yourstate = data.yourstate;
+    // const profilepic = data.profilepic;
+    console.log("Change Profile Data = ", data);
+    const lowerEmail = data.email.toLowerCase();
+
+    User.updateOne(
+        //{ email: data.email }, //filter
+        { email: lowerEmail }, //filter
+        {
+            // fields updated
+            $set: {
+                "displayname": data.displayname,
+                "yourname": data.yourname,
+                "age": data.age,
+                "city": data.city,
+                "yourstate": data.yourstate,
+                "profilepic": data.profilepic
+            }
+        }
+    )
+        .then((obj) => {
+            console.log('Updated Profile Object- ' + obj);
+            res.json({
+                message: `SUCCESS: Your profile has been updated`
+            });
+        })
+        .catch((error) => {
+            console.log('Error in Update Profile: ' + err);
+            res.status(500).json({
+                message: "ERROR: user profile did not update"
+            })
+        });
+    // .catch((err) => {
+    //     console.log('Error: ' + err);
+    // })
+
+
+
+
+    // console.log("Change Profile Data = ", data);
     // res.json({
-    //     message: 'I received your login data'
+    //     message: `I am returning from the change profile route`
     // });
+
 });
 
 
