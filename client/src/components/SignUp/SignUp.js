@@ -6,6 +6,9 @@ import ImageUploader from 'react-images-upload';
 //import ImagesUploader from 'react-images-uploader';
 import 'react-images-uploader/styles.css';
 import 'react-images-uploader/font.css';
+import Navbar from '../Navbar/Navbar';
+import Footer from '../Footer/Footer';
+import "./Signup.css";
 
 
 export default class Signup extends React.Component {
@@ -153,44 +156,46 @@ export default class Signup extends React.Component {
         return (
             <div>
 
+                <Navbar></Navbar>
                 <div>
-                    <Link to='/'>Go to Home</Link>
+                    <h1 className="HUMP"><span className="RecluseWord">Recluse</span><span className="LetLooseWord"> Let Loose</span></h1>
+                    {/* <Link to='/'>Go to Home</Link>
                     <br />
                     <Link to='/login'>Go to Login</Link>
                     <br />
                     <Link to='/profile'>Go to Profile</Link>
-                    <h2>SignUp Form</h2>
-                    <form onSubmit={this.onSubmit} id="signup-form">
-                        <div>
-                            <label htmlFor=""></label>
-                            <input type="email" name='email' placeholder='email (used for log-in)' required onChange={this.handleChange} />
-                        </div>
-                        <div>
-                            <label htmlFor=""></label>
-                            <input type="password" name='password' placeholder='password' required onChange={this.handleChange} />
-                        </div>
-                        <div>
-                            <label htmlFor=""></label>
-                            <input type="text" name='displayname' placeholder='Display Name' required onChange={this.handleChange} />
-                        </div>
+                    <h2>SignUp Form</h2> */}
+                    <form className="SIGNUP" onSubmit={this.onSubmit} id="signup-form">
 
                         <div>
                             <label htmlFor=""></label>
-                            <input type="text" name='yourname' placeholder='Your Name (First and Last)' required onChange={this.handleChange} />
+                            <input type="email" className="Email " name='email' placeholder='Email (Your Login Id)' required onChange={this.handleChange} />
                         </div>
                         <div>
                             <label htmlFor=""></label>
-                            <input type="number" name='age' placeholder='age' required onChange={this.handleChange} />
+                            <input type="password" className="PasswordSUP" name='password' placeholder='PassWord' required onChange={this.handleChange} />
+                        </div>
+                        <div >
+                            <label htmlFor=""></label>
+                            <input type="text" className="DisplayName" name='displayname' placeholder='Display Name' required onChange={this.handleChange} />
                         </div>
                         <div>
                             <label htmlFor=""></label>
-                            <input type="string" name='city' placeholder='city' required onChange={this.handleChange} />
+                            <input type="text" className="YourName" name='yourname' placeholder='Your Name (First and Last)' required onChange={this.handleChange} />
                         </div>
                         <div>
-                            <label htmlFor="">Select a State</label>
+                            <label htmlFor=""></label>
+                            <input type="number" className="Age" name='age' placeholder='Age' required onChange={this.handleChange} />
+                        </div>
+                        <div>
+                            <label htmlFor=""></label>
+                            <input type="string" className="City" name='city' placeholder='City' required onChange={this.handleChange} />
+                        </div>
+                        <div>
+                            <label id="SS" htmlFor="">Select a State</label>
                             <br />
                             {/* <input type="string" name='yourstate' placeholder='state' required onChange={this.handleChange} /> */}
-                            <SelectUSState id="myId" className="myClassName" required onChange={this.handleChangeUSState} />
+                            <SelectUSState id="myId" className="myClassName" placeholder="State" required onChange={this.handleChangeUSState} />
 
 
 
@@ -210,7 +215,10 @@ export default class Signup extends React.Component {
                         </div> */}
                         <div>
                             <label htmlFor=""></label>
-                            <input type="string" name='profilepic' placeholder='profile image (must be url)' required onChange={this.handleChange} />
+                            <input type="string" name='profilepic' placeholder='Profile Image' required onChange={this.handleChange} />
+                            <div>
+                                <img alt='profile-picture' src={this.state.profilepic} style={{ height: 100, width: 100 }} />
+                            </div>
                             {/* <ImagesUploader
                                 url="http://localhost:3000/notmultiple"
                                 optimisticPreviews
@@ -223,9 +231,10 @@ export default class Signup extends React.Component {
                                 label="Upload a picture"
                             /> */}
                         </div>
-                        <button disabled={this.state.isSubmitButtonDisabled}>Submit</button><button type="button" onClick={this.clearFields}>Cancel</button>
+                        <button id="SignUpSubmit" disabled={this.state.isSubmitButtonDisabled}>Submit</button><button type="button" id="SignUpCancel" onClick={this.clearFields}>Cancel</button>
                     </form>
                 </div>
+                <Footer></Footer>
             </div>
         );
     }

@@ -5,6 +5,7 @@
   "dependencies": {
     "react": "^16.5.2",
     "react-addons": "^0.9.1-deprecated",
+    "react-bootstrap": "^0.32.4",
     "react-dom": "^16.5.2",
     "react-images-upload": "^1.2.3",
     "react-images-uploader": "^1.2.0-rc1",

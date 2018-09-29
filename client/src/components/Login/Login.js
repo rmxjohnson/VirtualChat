@@ -2,7 +2,10 @@ import React from 'react';
 import { Route, Redirect } from 'react-router'
 import { Link, BrowserRouter } from 'react-router-dom';
 import axios from 'axios';
-import Profile from './Profile';
+import "./Login.css";
+import Profile from '../Profile';
+import Footer from '../Footer/Footer';
+import Navbar from '../Navbar/Navbar';
 
 
 
@@ -30,10 +33,9 @@ export default class Login extends React.Component {
 
     // }
 
-    handleSignUp() {
-        window.location = "/signup";
-        // window.location = "/" + newURL;
-    }
+    // handleSignUp() {
+    //     window.location = "/signup";
+    // }
 
 
 
@@ -109,13 +111,15 @@ export default class Login extends React.Component {
         }
         return (
             <div>
+                <Navbar></Navbar>
                 <div>
-                    <Link to='/'>Go to Home</Link>
+                    {/* <Link to='/'>Go to Home</Link>
                     <br />
                     <Link to='/signup'>Go to SignUp</Link>
                     <br />
                     <Link to='/profile'>Go to Profile</Link>
-                    <h2>Login Form</h2>
+                    <h2>Login Form</h2> */}
+                    <h1 className="HUMP"><span className="RecluseWord">Recluse</span><span className="LetLooseWord"> Let Loose</span></h1>
                     <form onSubmit={this.onSubmit}>
                         <div>
                             <label htmlFor=""></label>
@@ -125,12 +129,13 @@ export default class Login extends React.Component {
                             <label htmlFor=""></label>
                             <input type="password" name='password' placeholder='password' onChange={this.handleChange} />
                         </div>
-                        <button disabled={this.state.isSubmitButtonDisabled}>Submit</button>
+                        <button className="LogInSubmit" disabled={this.state.isSubmitButtonDisabled}>Submit</button>
                         <br />
-                        <button type="button" onClick={this.handleSignUp}>SignUp</button>
+                        {/* <button type="button" onClick={this.handleSignUp}>SignUp</button> */}
 
                     </form>
                 </div>
+                <Footer></Footer>
             </div>
         );
     }
