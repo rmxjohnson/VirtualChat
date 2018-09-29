@@ -2,6 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import SelectUSState from 'react-select-us-states';
+import "./Profile.css";
+import Footer from '../Footer/Footer';
+import Navbar2 from '../Navbar2/Navbar2';
 
 export default class Profile extends React.Component {
 
@@ -129,23 +132,26 @@ export default class Profile extends React.Component {
         console.log("profile props = ", this.props.location.state.profile);
         console.log('Render State: ', this.state);
         return (
-            <div>
-                <h2>Profile Component</h2>
+            <div className="profile-back">
+                {/* <h2>Profile Component</h2>
                 <Link to='/'>Go to Home</Link>
                 <br />
                 <Link to='/login'>Go to Login</Link>
                 <br />
-                <Link to='/signup'>Go to SignUp</Link>
+                <Link to='/signup'>Go to SignUp</Link> */}
+                <Navbar2 id="profile-nav"></Navbar2>
+                <h1 className="profile-logo">Your Profile</h1>
                 {/* <form>
                     <div>
                         <label htmlFor=""></label>
                         <input type="email">
                     </div>
                 </form>  */}
-                <h2>profile Form</h2>
+                {/* <h2>profile Form</h2> */}
                 <form onSubmit={this.onSubmit} id="profile-form">
                     <div>
-                        <label htmlFor="">Email</label>
+                        {/* <label htmlFor="">Email</label>
+                        <br /> */}
                         <input type="email" name='email' placeholder='email' defaultValue={this.state.email} disabled />
                     </div>
                     {/* <div>
@@ -154,26 +160,32 @@ export default class Profile extends React.Component {
                     </div> */}
                     <div>
                         <label htmlFor="">Display Name</label>
+                        <br />
                         <input type="text" name='displayname' placeholder='Display Name' value={this.state.displayname} required onChange={this.handleChange} />
                     </div>
 
                     <div>
                         <label htmlFor="">Your Name</label>
+                        <br />
                         <input type="text" name='yourname' placeholder='Your Name (First and Last)' value={this.state.yourname} required onChange={this.handleChange} />
                     </div>
                     <div>
                         <label htmlFor="">Age</label>
+                        <br />
                         <input type="number" name='age' placeholder='age' value={this.state.age} required onChange={this.handleChange} />
                     </div>
                     <div>
                         <label htmlFor="">City</label>
+                        <br />
                         <input type="string" name='city' placeholder='city' value={this.state.city} required onChange={this.handleChange} />
                     </div>
                     <div>
                         <label htmlFor="">Select a State</label>
                         <br />
                         <input type="string" name='yourstate' placeholder='state' value={this.state.yourstate} required onChange={this.handleChangeUSState} />
-                        <SelectUSState id="stateId" className="myClassName" value={this.state.yourstate} required onChange={this.handleChangeUSState} />
+
+
+
 
 
 
@@ -181,6 +193,7 @@ export default class Profile extends React.Component {
 
                     <div>
                         <label htmlFor="">Profile Pic</label>
+                        <br />
                         <input type="string" name='profilepic' placeholder='profile image' value={this.state.profilepic} required onChange={this.handleChange} />
                         <div>
                             <img alt='profile-picture' src={this.state.profilepic} style={{ height: 100, width: 100 }} />
@@ -189,7 +202,7 @@ export default class Profile extends React.Component {
                     </div>
                     <button disabled={this.state.isUpdateButtonDisabled}>Update Profile</button><button type="button" onClick={this.resetFields} >Cancel</button>
                 </form>
-
+                <Footer></Footer>
             </div>
         );
     }

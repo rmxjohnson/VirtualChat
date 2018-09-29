@@ -1,0 +1,31 @@
+body {
+    /* background-image: url("images/background15.jpg"); */
+    background-image: url('../../assets/images/login-signup-background.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-color: pink;
+}
+
+.RecluseWord{
+    font-family: 'Allerta', sans-serif;
+    float:right;
+    color: rgb(255, 255, 255);
+    margin-left: 60%;
+    text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+    letter-spacing: 6px;
+    position: fixed;
+    
+    
+}
+.LetLooseWord{
+    font-family: 'Allerta', sans-serif;
+    float: right;
+    color: rgb(255, 255, 255);
+    margin-left: 59%;
+    text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+    letter-spacing: 6px;
+    margin-top: 3%;
+    position: fixed;
+
+}

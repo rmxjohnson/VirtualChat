@@ -3,9 +3,10 @@ import { Route, Redirect } from 'react-router'
 import { Link, BrowserRouter } from 'react-router-dom';
 import axios from 'axios';
 import "./Login.css";
-import Profile from '../Profile';
+import Profile from '../Profile/Profile';
 import Footer from '../Footer/Footer';
 import Navbar from '../Navbar/Navbar';
+
 
 
 
@@ -123,11 +124,11 @@ export default class Login extends React.Component {
                     <form onSubmit={this.onSubmit}>
                         <div>
                             <label htmlFor=""></label>
-                            <input type="email" name='email' placeholder='email (for log-in)' onChange={this.handleChange} />
+                            <input className="LoginInput" type="email" name='email' placeholder='email (for log-in)' onChange={this.handleChange} />
                         </div>
                         <div>
                             <label htmlFor=""></label>
-                            <input type="password" name='password' placeholder='password' onChange={this.handleChange} />
+                            <input className="LoginInput" type="password" name='password' placeholder='password' onChange={this.handleChange} />
                         </div>
                         <button className="LogInSubmit" disabled={this.state.isSubmitButtonDisabled}>Submit</button>
                         <br />

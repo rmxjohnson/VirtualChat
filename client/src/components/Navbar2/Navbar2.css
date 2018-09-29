@@ -1,0 +1,21 @@
+.navbar {
+    margin-left: 38%;
+    width: 25%;
+    background-color: transparent;
+    font-family: 'Ruslan Display', cursive;
+    color: white;
+    font-size: 25px;
+    border-style: ridge;
+    border-color: rgb(88, 50, 0);
+    border-width: 8px;
+    border-radius: 10%;
+
+}
+
+a {
+    margin: 10px;
+    color: rgb(255, 254, 254);
+}
+
+
+

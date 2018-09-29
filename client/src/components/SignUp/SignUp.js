@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import SelectUSState from 'react-select-us-states';
 import ImageUploader from 'react-images-upload';
-//import ImagesUploader from 'react-images-uploader';
 import 'react-images-uploader/styles.css';
 import 'react-images-uploader/font.css';
 import Navbar from '../Navbar/Navbar';
@@ -19,7 +18,7 @@ export default class Signup extends React.Component {
         yourname: '',
         age: '',
         city: '',
-        yourstate: 'OH',
+        yourstate: '',
         profilepic: '',
         isSubmitButtonDisabled: false,
         pictures: []
@@ -173,7 +172,7 @@ export default class Signup extends React.Component {
                         </div>
                         <div>
                             <label htmlFor=""></label>
-                            <input type="password" className="PasswordSUP" name='password' placeholder='PassWord' required onChange={this.handleChange} />
+                            <input type="password" className="PasswordSUP" name='password' placeholder='Password' required onChange={this.handleChange} />
                         </div>
                         <div >
                             <label htmlFor=""></label>

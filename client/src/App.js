@@ -5,11 +5,11 @@ import './App.css';
 
 
 // import components
-import Home from './components/Home';
+import Home from './components/Home/Home.js';
 import Navbar from './components/Navbar/Navbar.js';
 import Login from './components/Login/Login.js';
 import SignUp from './components/SignUp/SignUp.js';
-import Profile from './components/Profile';
+import Profile from './components/Profile/Profile.js';
 
 // function DummyComponent() {
 //   return <h2>Hello World</h2>;

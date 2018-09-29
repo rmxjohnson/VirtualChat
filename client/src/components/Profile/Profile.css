@@ -1,0 +1,44 @@
+.profile-back {
+    /* background-image: url("images/background15.jpg"); */
+    background-image: url('../../assets/images/profile-background.jpg'); 
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-color: pink;
+}
+
+#profile-form{
+margin-left: 40%;
+}
+
+input {
+   
+    margin: 10px;
+    width: 20%;
+    height: 50px;
+    font-size: 20px;
+    text-align: center;
+    border-style: ridge;
+    border-color: rgb(88, 50, 0);
+    border-width: 8px;
+    border-radius: 10%;
+
+}
+label{
+    color: white;
+}
+
+#profile-nav{
+    align-content: center;
+    margin-left: 40%;
+}
+
+.profile-logo{
+    align-content: center;
+    margin-left: 40%;
+    font-weight: bold;
+    text-decoration: underline;
+    color: white;
+    text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+    letter-spacing: 6px;
+}

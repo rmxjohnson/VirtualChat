@@ -1,8 +1,9 @@
 body {
     /* background-image: url("images/background15.jpg"); */
+    background-image: url('../../assets/images/login-signup-background.jpg');
     background-size: cover;
     background-repeat: no-repeat;
-    background-attachment: fixed;
+    background-attachment: fixed; 
     background-color: pink;
 }
 
