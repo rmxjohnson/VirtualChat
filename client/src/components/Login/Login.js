@@ -6,6 +6,7 @@ import "./Login.css";
 import Profile from '../Profile/Profile';
 import Footer from '../Footer/Footer';
 import Navbar from '../Navbar/Navbar';
+import Chat from '../Chat/Chat';
 
 
 
@@ -77,8 +78,9 @@ export default class Login extends React.Component {
                     .then((res2) => {
                         console.log("Profile info");
                         console.log(res2);
-                        this.setState({ validLoggin: true, profile: res2.data });
-                        console.log("loggin boolean", this.state.validLoggin)
+                        this.setState({ validLoggin: true, profile: res2.data }, () => {
+                            console.log("loggin boolean", this.state.validLoggin)
+                        });
                     })
                     .catch(function (error) {
                         console.log('Error getting the profile on login', error);
@@ -106,7 +108,8 @@ export default class Login extends React.Component {
             console.log("In the IF statement", this.state.profile);
             // if valid LogIn, redirect to the profile page
             return (<Redirect to={{
-                pathname: '/profile',
+                //pathname: '/profile',
+                pathname: '/chat',
                 state: this.state.profile
             }} />);
         }

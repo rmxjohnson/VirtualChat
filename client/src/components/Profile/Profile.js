@@ -122,6 +122,17 @@ export default class Profile extends React.Component {
             });
     }
 
+    gotoChat = () => {
+        // event.preventDefault();
+        console.log("I am in goto Profile function");
+
+
+
+        this.setState({
+            redirectTo: true
+        });
+    }
+
 
 
     render() {
@@ -201,6 +212,7 @@ export default class Profile extends React.Component {
 
                     </div>
                     <button disabled={this.state.isUpdateButtonDisabled}>Update Profile</button><button type="button" onClick={this.resetFields} >Cancel</button>
+                    <button className="gotoChat" type="button" onClick={this.gotoChat} >GoTo Chat</button>
                 </form>
                 <Footer></Footer>
             </div>

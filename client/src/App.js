@@ -10,6 +10,7 @@ import Navbar from './components/Navbar/Navbar.js';
 import Login from './components/Login/Login.js';
 import SignUp from './components/SignUp/SignUp.js';
 import Profile from './components/Profile/Profile.js';
+import Chat from './components/Chat/Chat.js';
 
 // function DummyComponent() {
 //   return <h2>Hello World</h2>;
@@ -72,6 +73,7 @@ class App extends Component {
         <Route path='/login' component={Login} />
         <Route path='/signup' component={SignUp} />
         <Route exact path='/profile' component={Profile} />
+        <Route exact path='/chat' component={Chat} />
         {/* <PrivateRoute path='/profile' component={Profile} /> */}
 
       </div>

@@ -1,0 +1,60 @@
+body {
+    /* background-image: url('https://images2.alphacoders.com/437/437652.jpg'); */
+    background-image: url('../../assets/images/login-signup-background.jpg');
+}
+.LogInSubmit {
+    background-color: rgb(255, 38, 0);
+    border-radius: 10%;
+    color: white;
+    font-family: 'Allerta', sans-serif;
+    text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+    letter-spacing: 2px;
+    border-style: ridge;
+    border-color: rgb(88, 50, 0);
+    border-width: 4px;
+    margin-left: 16.5%;
+
+}
+
+.RecluseWord {
+    font-family: 'Allerta', sans-serif;
+    float: right;
+    color: rgb(255, 255, 255);
+    margin-left: 60%;
+    text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+    letter-spacing: 6px;
+    position: fixed;
+
+
+}
+
+.LetLooseWord {
+    font-family: 'Allerta', sans-serif;
+    float: right;
+    color: rgb(255, 255, 255);
+    margin-left: 59%;
+    text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+    letter-spacing: 6px;
+    margin-top: 3%;
+    position: fixed;
+
+}
+Footer{
+    
+    margin-top: 500px;
+}
+input {
+  
+    margin: 10px;
+    width: 20%;
+    height: 50px;
+    font-size: 20px;
+    text-align: center;
+    border-style: ridge;
+    border-color: rgb(88, 50, 0);
+    border-width: 8px;
+    border-radius: 10%;
+}
+.LoginInput{
+    margin-left: 10%;
+}
