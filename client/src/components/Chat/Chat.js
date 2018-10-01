@@ -78,8 +78,8 @@ export default class Chat extends React.Component {
                 <br />
                 <Link to='/signup'>Go to SignUp</Link>
                 <br />
-                <Link to='/profile'>Go to Profile</Link>
-                <button className="gotoProfile" type="button" onClick={this.gotoProfile} >Update Profile</button>
+                {/* <Link to='/profile'>Go to Profile</Link> */}
+                <button className="gotoProfile" type="button" onClick={this.gotoProfile} >GoTo Profile</button>
 
                 <Footer></Footer>
             </div>

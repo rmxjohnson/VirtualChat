@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { Route, Redirect } from 'react-router'
 import SelectUSState from 'react-select-us-states';
 import ImageUploader from 'react-images-upload';
 import 'react-images-uploader/styles.css';
@@ -21,7 +22,8 @@ export default class Signup extends React.Component {
         yourstate: '',
         profilepic: '',
         isSubmitButtonDisabled: false,
-        pictures: []
+        pictures: [],
+        redirectToLogin: false
     };
 
     // constructor(props) {
@@ -123,11 +125,12 @@ export default class Signup extends React.Component {
                         // this.setState({
                         //     isSubmitButtonDisabled: false
                         // });
+                        this.setState({ redirectToLogin: true });
                         this.clearFields();
                         console.log("After ClearFields");
                         break;
                     case 500:
-                        alert('Invalid field values. ');
+                        alert('Email already used. Enter another email ');
                         break;
                     default:
                         alert('Other status: ', response.data.status);
@@ -136,7 +139,7 @@ export default class Signup extends React.Component {
                     isSubmitButtonDisabled: false
                 });
 
-                alert('SignUp Request was successful');
+                // alert('SignUp Request was successful');
                 console.log("SignUp Response = ", response);
             })
             .catch((err) => {
@@ -152,6 +155,14 @@ export default class Signup extends React.Component {
     render() {
 
         console.log('State: ', this.state);
+        if (this.state.redirectToLogin) {
+            console.log("In the IF statement in the signup component");
+            // if valid LogIn, redirect to the profile page
+            return (<Redirect to={{
+                //pathname: '/profile',
+                pathname: '/login'
+            }} />);
+        }
         return (
             <div>
 

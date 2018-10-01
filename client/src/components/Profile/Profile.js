@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Route, Redirect } from 'react-router'
 import axios from 'axios';
 import SelectUSState from 'react-select-us-states';
 import "./Profile.css";
@@ -13,6 +14,7 @@ export default class Profile extends React.Component {
     // }
 
 
+
     constructor(props) {
         super(props);
         this.initialState = {
@@ -24,7 +26,8 @@ export default class Profile extends React.Component {
             city: props.location.state.city,
             yourstate: props.location.state.yourstate,
             profilepic: props.location.state.profilepic,
-            isUpdateButtonDisabled: false
+            isUpdateButtonDisabled: false,
+            redirectToChat: false
         };
 
         // set state to the initial state
@@ -124,18 +127,30 @@ export default class Profile extends React.Component {
 
     gotoChat = () => {
         // event.preventDefault();
-        console.log("I am in goto Profile function");
+        console.log("I am in goto chat function from the profile page");
 
 
 
         this.setState({
-            redirectTo: true
+            redirectToChat: true
         });
     }
 
 
 
     render() {
+        if (this.state.redirectToChat) {
+            var profile = this.state;
+            console.log("State In the IF statement of the profile page", this.state);
+
+            console.log("variable profile In the IF statement of the profile page", profile);
+            // if valid LogIn, redirect to the profile page
+            return (<Redirect to={{
+                //pathname: '/profile',
+                pathname: '/chat',
+                state: profile
+            }} />);
+        }
 
 
         // console.log("Original State = ", originalState);
@@ -191,19 +206,19 @@ export default class Profile extends React.Component {
                         <input type="string" name='city' placeholder='city' value={this.state.city} required onChange={this.handleChange} />
                     </div>
                     <div>
-                        <label htmlFor="">Select a State</label>
+
+                        <label htmlFor="">Your State</label>
                         <br />
-                        <input type="string" name='yourstate' placeholder='state' value={this.state.yourstate} required onChange={this.handleChangeUSState} />
-
-
-
-
-
-
+                        <input type="string" name='yourstate' placeholder='state' value={this.state.yourstate} required disabled onChange={this.handleChangeUSState} />
+                        <br />
+                        <label htmlFor="">Update your State</label>
+                        <br />
+                        <SelectUSState id="myId" className="myClassName" placeholder="State" required onChange={this.handleChangeUSState} />
+                        <br />
                     </div>
 
                     <div>
-                        <label htmlFor="">Profile Pic</label>
+                        <label htmlFor="">Profile Pic (url only)</label>
                         <br />
                         <input type="string" name='profilepic' placeholder='profile image' value={this.state.profilepic} required onChange={this.handleChange} />
                         <div>
