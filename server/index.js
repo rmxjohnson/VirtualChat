@@ -57,7 +57,7 @@ app.get('/profile/:email', function (req, res) {
 app.post('/signup', (req, res) => {
     const data = req.body;
 
-    const displayname = data.displayname;
+    const user = data.user;
     const email = data.email;
     const password = data.password;
     const yourname = data.yourname;
@@ -66,12 +66,14 @@ app.post('/signup', (req, res) => {
     const yourstate = data.yourstate;
     const profilepic = data.profilepic;
     const pictures = data.pictures;
+    const filename = data.filename;
 
     // convert email to lower case
     const lowerEmail = data.email.toLowerCase();
 
 
     console.log("SignUp Data = ", data);
+    console.log("Signup File = ", req.file);
 
     // to encrypt user password    
     const salt = bcrypt.genSaltSync(10);
@@ -82,7 +84,7 @@ app.post('/signup', (req, res) => {
         .then(() => {
 
             User.create({
-                displayname: data.displayname,
+                user: data.user,
                 email: lowerEmail,
                 // email: data.email,
                 //password: password,
@@ -92,6 +94,7 @@ app.post('/signup', (req, res) => {
                 city: data.city,
                 yourstate: data.yourstate,
                 profilepic: data.profilepic,
+                filename: data.filename
                 // pictures: pictures
             })
                 .then(function () {
@@ -192,7 +195,7 @@ app.post('/updateprofile', (req, res) => {
         {
             // fields updated
             $set: {
-                "displayname": data.displayname,
+                "user": data.user,
                 "yourname": data.yourname,
                 "age": data.age,
                 "city": data.city,

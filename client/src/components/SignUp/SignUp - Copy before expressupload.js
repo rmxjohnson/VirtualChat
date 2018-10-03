@@ -13,7 +13,7 @@ import "./Signup.css";
 
 export default class Signup extends React.Component {
     state = {
-        user: '',
+        displayname: '',
         email: '',
         password: '',
         yourname: '',
@@ -22,7 +22,8 @@ export default class Signup extends React.Component {
         yourstate: '',
         profilepic: '',
         isSubmitButtonDisabled: false,
-        pictures: [],
+        filename: '',
+        // pictures: [],
         redirectToLogin: false
     };
 
@@ -32,11 +33,11 @@ export default class Signup extends React.Component {
     //     this.onDrop = this.onDrop.bind(this);
     // }
 
-    onDrop(picture) {
-        this.setState({
-            pictures: this.state.pictures.concat(picture),
-        });
-    }
+    // onDrop(picture) {
+    //     this.setState({
+    //         pictures: this.state.pictures.concat(picture),
+    //     });
+    // }
 
     // componentDidMount = () => {
 
@@ -70,12 +71,39 @@ export default class Signup extends React.Component {
         // console.log('Changing State of residence: ', this.state);
     }
 
+    // here is file changed handler
+    fileChangedHandler = (event) => {
+        if (event.target.files.length == 0) {
+            return
+        }
+        const file = event.target.files[0];
+        const filename = file.name;
+        const timestamp = Math.round(new Date().getTime() / 1000);
+        console.log(timestamp);
+        this.setState(
+            {
+                ...this.state,
+                file: file,
+                filename: timestamp + file.name
+            })
+    }
+
+    // here is upload handler
+    uploadHandler = () => {
+        console.log('File info: ' + this.state.file);
+        console.log('File name info: ' + this.state.filename);
+        // from sample website on how to upload
+        // axios.post('my-domain.com/file-upload', this.state.selectedFile)
+    }
+
+
+
     clearFields = () => {
         // event.preventDefault();
         console.log("I am in clear fields");
         document.getElementById("signup-form").reset();
         this.setState({
-            user: '',
+            displayname: '',
             email: '',
             password: '',
             yourname: '',
@@ -83,6 +111,8 @@ export default class Signup extends React.Component {
             city: '',
             yourstate: 'OH',
             profilepic: '',
+            file: null,
+            filename: ''
             // pictures: []
         });
     }
@@ -96,12 +126,14 @@ export default class Signup extends React.Component {
         });
 
         console.log("data to submit", this.state);
+        console.log("Before post call");
+        console.log("File name = ", this.state.filename);
 
         axios({
             url: '/signup',
             method: 'POST',
             data: {
-                user: this.state.user,
+                displayname: this.state.displayname,
                 email: this.state.email,
                 password: this.state.password,
                 yourname: this.state.yourname,
@@ -109,6 +141,8 @@ export default class Signup extends React.Component {
                 city: this.state.city,
                 yourstate: this.state.yourstate,
                 profilepic: this.state.profilepic,
+                imagefile: this.state.file,
+                filename: this.state.filename
                 // pictures: this.state.pictures
             }
         })
@@ -187,7 +221,7 @@ export default class Signup extends React.Component {
                         </div>
                         <div >
                             <label htmlFor=""></label>
-                            <input type="text" className="DisplayName" name='user' placeholder='Display Name' required onChange={this.handleChange} />
+                            <input type="text" className="DisplayName" name='displayname' placeholder='Display Name' required onChange={this.handleChange} />
                         </div>
                         <div>
                             <label htmlFor=""></label>
@@ -229,6 +263,9 @@ export default class Signup extends React.Component {
                             <div>
                                 <img alt='profile-picture' src={this.state.profilepic} style={{ height: 100, width: 100 }} />
                             </div>
+                            {/* <div>
+                                <img alt='profile-picture' src='../../assets/images/yellow.png' style={{ height: 100, width: 100 }} />
+                            </div> */}
                             {/* <ImagesUploader
                                 url="http://localhost:3000/notmultiple"
                                 optimisticPreviews
@@ -241,9 +278,17 @@ export default class Signup extends React.Component {
                                 label="Upload a picture"
                             /> */}
                         </div>
+                        <div>
+                            <input type='file' onChange={this.fileChangedHandler} placeholder='image upload'></input>
+                        </div>
                         <button id="SignUpSubmit" disabled={this.state.isSubmitButtonDisabled}>Submit</button><button type="button" id="SignUpCancel" onClick={this.clearFields}>Cancel</button>
                     </form>
+
+                    {/* <input type='file' onChange={this.fileChangedHandler} placeholder='image upload'></input>
+                    <button onClick={this.uploadHandler}>Upload!</button> */}
                 </div>
+
+
                 <Footer></Footer>
             </div>
         );

@@ -6,7 +6,7 @@ var Schema = mongoose.Schema;
 
 // Create new user schema
 var UserSchema = new Schema({
-    displayname: {
+    user: {
         type: String,
         required: true,
     },
@@ -40,8 +40,8 @@ var UserSchema = new Schema({
         type: String,
         required: true
     },
-    pictures: {
-        type: Array
+    filename: {
+        type: String
     }
 });
 

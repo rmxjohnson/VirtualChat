@@ -13,7 +13,7 @@ import "./Signup.css";
 
 export default class Signup extends React.Component {
     state = {
-        user: '',
+        displayname: '',
         email: '',
         password: '',
         yourname: '',
@@ -75,7 +75,7 @@ export default class Signup extends React.Component {
         console.log("I am in clear fields");
         document.getElementById("signup-form").reset();
         this.setState({
-            user: '',
+            displayname: '',
             email: '',
             password: '',
             yourname: '',
@@ -101,7 +101,7 @@ export default class Signup extends React.Component {
             url: '/signup',
             method: 'POST',
             data: {
-                user: this.state.user,
+                displayname: this.state.displayname,
                 email: this.state.email,
                 password: this.state.password,
                 yourname: this.state.yourname,
@@ -187,7 +187,7 @@ export default class Signup extends React.Component {
                         </div>
                         <div >
                             <label htmlFor=""></label>
-                            <input type="text" className="DisplayName" name='user' placeholder='Display Name' required onChange={this.handleChange} />
+                            <input type="text" className="DisplayName" name='displayname' placeholder='Display Name' required onChange={this.handleChange} />
                         </div>
                         <div>
                             <label htmlFor=""></label>

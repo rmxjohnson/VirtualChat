@@ -19,7 +19,7 @@ export default class Profile extends React.Component {
         super(props);
         this.initialState = {
             age: props.location.state.age,
-            user: props.location.state.user,
+            displayname: props.location.state.displayname,
             email: props.location.state.email,
             password: props.location.state.password,
             yourname: props.location.state.yourname,
@@ -36,7 +36,7 @@ export default class Profile extends React.Component {
         // const originalState = this.state;
         console.log("In the constructor", this.props.location) //undefined
 
-        console.log("name ", this.props.location.state.user);
+        console.log("name ", this.props.location.state.displayname);
         console.log("email ", this.props.location.state.email);
         console.log("password ", this.props.location.state.password);
         console.log("yourname ", this.props.location.state.yourname);
@@ -71,7 +71,7 @@ export default class Profile extends React.Component {
         // event.preventDefault();
         console.log("I am in reset fields");
         console.log('Initial State = ', this.initialState);
-        console.log('Initial State user= ', this.initialState.user);
+        console.log('Initial State displayname= ', this.initialState.displayname);
         this.setState(this.initialState);
     }
 
@@ -107,7 +107,7 @@ export default class Profile extends React.Component {
             url: '/updateprofile',
             method: 'POST',
             data: {
-                user: this.state.user,
+                displayname: this.state.displayname,
                 email: this.state.email,
                 yourname: this.state.yourname,
                 age: this.state.age,
@@ -203,7 +203,7 @@ export default class Profile extends React.Component {
                     <div>
                         <label htmlFor="">Display Name</label>
                         <br />
-                        <input type="text" name='user' placeholder='Display Name' value={this.state.user} required onChange={this.handleChange} />
+                        <input type="text" name='displayname' placeholder='Display Name' value={this.state.displayname} required onChange={this.handleChange} />
                     </div>
 
                     <div>
@@ -246,8 +246,8 @@ export default class Profile extends React.Component {
                     <button className="gotoChat" type="button" onClick={this.gotoChat} >GoTo Chat</button>
                 </form>
 
-                {/* <input type='file' onChange={this.fileChangedHandler} placeholder='image upload'></input>
-                <button onClick={this.uploadHandler}>Upload!</button> */}
+                <input type='file' onChange={this.fileChangedHandler} placeholder='image upload'></input>
+                <button onClick={this.uploadHandler}>Upload!</button>
                 <Footer></Footer>
             </div>
         );

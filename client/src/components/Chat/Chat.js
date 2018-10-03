@@ -16,7 +16,7 @@ export default class Chat extends React.Component {
         this.state = {
             profile: {
                 age: props.location.state.age,
-                displayname: props.location.state.displayname,
+                user: props.location.state.user,
                 email: props.location.state.email,
                 password: props.location.state.password,
                 yourname: props.location.state.yourname,
@@ -34,7 +34,7 @@ export default class Chat extends React.Component {
         // const originalState = this.state;
         console.log("In the constructor for CHAT", this.props.location) //undefined
 
-        console.log("name ", this.props.location.state.displayname);
+        console.log("user ", this.props.location.state.user);
         console.log("email ", this.props.location.state.email);
         console.log("password ", this.props.location.state.password);
         console.log("yourname ", this.props.location.state.yourname);
