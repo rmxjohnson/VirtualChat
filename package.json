@@ -18,7 +18,13 @@
     "cookie-parser": "^1.4.3",
     "express": "^4.16.3",
     "mongoose": "^5.2.17",
+    "react": "^16.5.2",
     "react-addons": "^0.9.1-deprecated",
-    "underscore": "^1.9.1"
+    "react-dom": "^16.5.2",
+    "react-icons": "^3.1.0",
+    "react-scripts": "^2.0.4",
+    "socket.io": "^2.1.1",
+    "underscore": "^1.9.1",
+    "uuid": "^3.3.2"
   }
 }

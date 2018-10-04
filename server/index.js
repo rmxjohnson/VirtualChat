@@ -1,4 +1,24 @@
+// const app = require('express')();
+// var server = require('http').Server(app);
+// var io = require('socket.io')(server);
+
+// const mongoose = require('mongoose');
+// const bodyParser = require('body-parser');
+// const bcrypt = require('bcryptjs');
+
+// mongoose.connect('mongodb://localhost/my_db', { useNewUrlParser: true });
+
+// const SocketManager = require('./SocketManager')
+
+// io.on('connection', SocketManager)
+
+// const User = require('./models/user');
+// const PORT = process.env.PORT || 9000;
+
 const app = require('express')();
+var server = require('http').Server(app);
+var io = require('socket.io')(server);
+
 
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
@@ -8,6 +28,10 @@ mongoose.connect('mongodb://localhost/my_db', { useNewUrlParser: true });
 
 const User = require('./models/user');
 const PORT = process.env.PORT || 9000;
+const SocketManager = require('./SocketManager');
+
+io.on('connection', SocketManager);
+
 
 // Use body-parser for handling form submissions
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -232,7 +256,13 @@ app.post('/updateprofile', (req, res) => {
 
 
 
-app.listen(PORT, () => {
+// const PORT = process.env.PORT || 3231
+
+
+
+server.listen(PORT, () => {
     console.log(`Server is starting at Port ${PORT}`);
 })
+
+module.exports = io;
 

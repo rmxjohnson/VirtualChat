@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Link, BrowserRouter } from 'react-router-dom';
 import './Chat.css';
 import { Route, Redirect } from 'react-router'
@@ -6,6 +6,12 @@ import axios from 'axios';
 import Profile from '../Profile/Profile';
 import Footer from '../Footer/Footer';
 import Navbar from '../Navbar/Navbar';
+import io from 'socket.io-client';
+import { USER_CONNECTED, LOGOUT } from '../../Events';
+import ChatContainer from "../chats/ChatContainer";
+
+const socketUrl = "http://localhost:9000";
+
 
 
 export default class Chat extends React.Component {
@@ -24,7 +30,9 @@ export default class Chat extends React.Component {
                 yourstate: props.location.state.yourstate,
                 profilepic: props.location.state.profilepic
             },
-            redirectToProfile: false
+            redirectToProfile: false,
+            socket: null,
+            user: props.location.state.user
         }
         // };
 
@@ -59,6 +67,36 @@ export default class Chat extends React.Component {
         });
     }
 
+    componentWillMount() {
+        this.initSocket()
+    }
+
+
+    initSocket = () => {
+        const socket = io(socketUrl)
+
+        socket.on('connect', () => {
+            console.log("Connected from chat");
+        })
+
+        this.setState({ socket })
+    }
+
+
+    setUser = (user) => {
+        const { socket } = this.state
+        socket.emit(USER_CONNECTED, user);
+        this.setState({ user })
+    }
+
+
+    logout = () => {
+        const { socket } = this.state
+        socket.emit(LOGOUT)
+        this.setState({ user: null })
+
+    }
+
     render() {
         if (this.state.redirectToProfile) {
             console.log("In the IF statement in the chat component", this.state.profile);
@@ -80,6 +118,7 @@ export default class Chat extends React.Component {
                 <br />
                 {/* <Link to='/profile'>Go to Profile</Link> */}
                 <button className="gotoProfile" type="button" onClick={this.gotoProfile} >GoTo Profile</button>
+                <ChatContainer socket={this.state.socket} user={this.state.user} logout={this.logout} />
 
                 <Footer></Footer>
             </div>
