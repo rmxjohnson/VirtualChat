@@ -55,6 +55,11 @@ export default class Chat extends React.Component {
         // console.log("Original State = ", originalState);
     };
 
+    componentDidMount = () => {
+        const socket = this.state.socket;
+        socket.emit('VERIFY_USER', this.state.user, this.verifyUser)
+    };
+
     gotoProfile = () => {
         // event.preventDefault();
         console.log("I am in goto Profile function");
@@ -71,6 +76,16 @@ export default class Chat extends React.Component {
         this.initSocket()
     }
 
+    verifyUser = ({user, isUser})=>{
+
+		if(isUser){
+			// this.setError("User name taken")
+		}else{
+			// this.setError("")
+			this.setUser(user)
+		}
+	}
+
 
     initSocket = () => {
         const socket = io(socketUrl)
@@ -85,8 +100,8 @@ export default class Chat extends React.Component {
 
     setUser = (user) => {
         const { socket } = this.state
+        // this.setState({ user: user });
         socket.emit(USER_CONNECTED, user);
-        this.setState({ user })
     }
 
 

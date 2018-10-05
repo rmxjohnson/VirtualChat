@@ -19,6 +19,8 @@ export default class Messages extends Component {
 	componentDidUpdate(prevProps, prevState) {
 		this.scrollDown()
 	}
+
+	
 	
 	render() {
 		const { messages, user, typingUsers } = this.props
