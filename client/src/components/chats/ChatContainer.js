@@ -101,7 +101,7 @@ export default class ChatContainer extends Component {
 
 	sendMessage = (chatId, message) => {
 		const { socket } = this.props
-		socket.emit(MESSAGE_SENT, { chatId, message })
+		socket.emit("MESSAGE_SENT", { chatId, message })
 	}
 
 

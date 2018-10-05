@@ -40,6 +40,8 @@ module.exports = function (socket) {
 		io.emit(USER_CONNECTED, connectedUsers)
 		console.log(connectedUsers);
 
+
+
 	})
 
 
@@ -51,7 +53,8 @@ module.exports = function (socket) {
 			io.emit(USER_DISCONNECTED, connectedUsers)
 			console.log("Disconnect", connectedUsers);
 		}
-	})
+	});
+
 
 
 
@@ -84,19 +87,22 @@ module.exports = function (socket) {
 			socket.to(receiverSocket).emit(PRIVATE_MESSAGE, newChat)
 			socket.emit(PRIVATE_MESSAGE, newChat)
 		}/*else{
-		if(!(receiver in activeChat.users)) {
-			activeChat.users
-			.filter(user => user in connectedUsers)
-			.map( user => connectedUsers[user])
-			.map(user => {
-				socket.to(user.socketId).emit(NEW_CHAT_USER, { chatID: activeChat.id, newUser: receiver})
+	if(!(receiver in activeChat.users)) {
+		activeChat.users
+		.filter(user => user in connectedUsers)
+		.map( user => connectedUsers[user])
+		.map(user => {
+			socket.to(user.socketId).emit(NEW_CHAT_USER, { chatID: activeChat.id, newUser: receiver})
 
-			})
-			socket.emit(NEW_CHAT_USER, { chatId: activeChat.id, newUser: receiver})
-		}
-		socket.to(receiverSocket).emit(PRIVATE_MESSAGE, activeChat)
-	}*/
+		})
+		socket.emit(NEW_CHAT_USER, { chatId: activeChat.id, newUser: receiver})
+	}
+	socket.to(receiverSocket).emit(PRIVATE_MESSAGE, activeChat)
+}*/
 	})
+
+
+
 
 
 	function sendTypingToChat(user) {
