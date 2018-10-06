@@ -16,8 +16,10 @@
 // const PORT = process.env.PORT || 9000;
 
 const app = require('express')();
+const cors = require('cors');
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
+const path = require('path');
 
 
 const mongoose = require('mongoose');
@@ -32,10 +34,11 @@ const SocketManager = require('./SocketManager');
 
 io.on('connection', SocketManager);
 
-
+app.use(cors());
 // Use body-parser for handling form submissions
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(express.static(path.join(__dirname, '/../client/build')));
 
 // Routes - Server
 app.get('/', (req, res) => {
