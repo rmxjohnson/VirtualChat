@@ -34,11 +34,12 @@ const SocketManager = require('./SocketManager');
 
 io.on('connection', SocketManager);
 
+
 app.use(cors());
 // Use body-parser for handling form submissions
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(express.static(path.join(__dirname, '/../client/build')));
+app.use(require('express').static(path.join(__dirname, '/../client/build')));
 
 // Routes - Server
 app.get('/', (req, res) => {
