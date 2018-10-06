@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 
 export default class Messages extends Component {
 	constructor(props) {
-	  super(props);
-		
+		super(props);
+
 		this.scrollDown = this.scrollDown.bind(this)
 	}
 
-	scrollDown(){
+	scrollDown() {
 		const { container } = this.refs
 		container.scrollTop = container.scrollHeight
 	}
@@ -20,16 +20,17 @@ export default class Messages extends Component {
 		this.scrollDown()
 	}
 
-	
-	
+
+
 	render() {
 		const { messages, user, typingUsers } = this.props
+		console.log("Messages in messages.js", messages);
 		return (
 			<div ref='container'
 				className="thread-container">
 				<div className="thread">
 					{
-						messages.map((mes)=>{
+						messages.map((mes) => {
 							return (
 								<div
 									key={mes.id}
@@ -42,11 +43,11 @@ export default class Messages extends Component {
 									</div>
 								</div>
 
-								)
+							)
 						})
 					}
 					{
-						typingUsers.map((name)=>{
+						typingUsers.map((name) => {
 							return (
 								<div key={name} className="typing-user">
 									{`${name} is typing . . .`}

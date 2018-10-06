@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "lodash.differenceby": "^4.8.0",
     "react": "^16.5.2",
     "react-addons": "^0.9.1-deprecated",
     "react-bootstrap": "^0.32.4",

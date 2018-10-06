@@ -3,6 +3,7 @@ import React from 'react';
 
 
 export default function ({ name, numberOfUsers }) {
+	console.log("Number of users = ", numberOfUsers);
 
 	return (
 		<div className="chat-header">
