@@ -126,7 +126,7 @@ export default class Signup extends React.Component {
                         //     isSubmitButtonDisabled: false
                         // });
                         this.setState({ redirectToLogin: true });
-                        this.clearFields();
+                        // this.clearFields();
                         console.log("After ClearFields");
                         break;
                     case 500:

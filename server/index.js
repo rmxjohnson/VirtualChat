@@ -26,7 +26,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const bcrypt = require('bcryptjs');
 
-mongoose.connect('mongodb://localhost/my_db', { useNewUrlParser: true });
+mongoose.connect('mongodb://localhost/bubblink_db', { useNewUrlParser: true });
 
 const User = require('./models/user');
 const PORT = process.env.PORT || 9000;
