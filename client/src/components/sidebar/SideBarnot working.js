@@ -15,9 +15,7 @@ export default class SideBar extends Component {
 		this.state = {
 			receiver: "",
 			activeSideBar: SideBar.type.CHATS
-
 		}
-		// this.addChatForuser = this.addChatForuser.bind(this);
 	}
 	handleSubmit = (e) => {
 		e.preventDefault()
@@ -27,7 +25,6 @@ export default class SideBar extends Component {
 		//console.log(receiver)
 	}
 	addChatForuser = (username) => {
-		console.log("I am inside")
 		this.setActiveSideBar(SideBar.type.CHATS)
 		this.props.onSendPrivateMessage(username)
 	}
@@ -36,12 +33,9 @@ export default class SideBar extends Component {
 		this.setState({ activeSideBar: newSideBar })
 	}
 
-
 	render() {
 		const { chats, activeChat, user, setActiveChat, logout, users } = this.props
 		const { receiver, activeSideBar } = this.state
-		console.log("In the sidebar USER = ", user);
-		console.log("In the sidebar Users array", users);
 		return (
 			<div>
 				<div id="side-bar">
@@ -79,7 +73,6 @@ export default class SideBar extends Component {
 					ref='users'
 					onClick={(e) => { (e.target === this.refs.user) && setActiveChat(null) }}>
 
-
 					{
 						/*activeSideBar === SideBar.type.CHATS ?
 							chats.map((chat) => {
@@ -95,38 +88,19 @@ export default class SideBar extends Component {
 								}
 								
 							
-							//})*/
-
-						// users.map((otherUser) => {
-						// 	console.log("other user = ", otherUser);
-						// 	console.log(this.addChatForuser);
-						// 	var clickHandler = this.addChatForUser;
-
-						// 	return (
-						// 		<SideBarOption
-						// 			key={otherUser.id}
-						// 			name={otherUser.name}
-						// 			onClick={() => {
-						// 				return
-						// 				clickHandler(otherUser.name)
-						// 			}}
-
-
-
-						// 		/>
-						// 	)
-						// })
-
-						// differenceBy(users, [user], 'name').users.map((otherUser) => {
-						// 	console.log("other user = ", otherUser);
-						// 	return (
-						// 		<SideBarOption
-						// 			key={otherUser.id}
-						// 			name={otherUser.name}
-						// 			onClick={() => { this.addChatForUser(otherUser.name) }}
-						// 		/>
-						// 	)
-						// })
+							//})
+						
+						 
+							
+							differenceBy(users, [user], 'name').users.map((otherUser) => {
+								return (
+									<SideBarOption
+										key={otherUser.id}
+										name={otherUser.name}
+										onClick={() => { this.addChatForUser(otherUser.name) }}
+									/>
+								)
+							})*/
 					}
 
 				</div>
