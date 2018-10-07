@@ -26,7 +26,15 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const bcrypt = require('bcryptjs');
 
-mongoose.connect('mongodb://localhost/bubblink_db', { useNewUrlParser: true });
+// If deployed, use the deployed database.  Otherwise use the local bubblink database
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/bubblink_db";
+
+// Connect mongoose to the Mongo database
+mongoose.Promise = Promise;
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true }).catch(error => { console.log(error) });
+
+// below code is before changes for heroku
+//mongoose.connect('mongodb://localhost/bubblink_db', { useNewUrlParser: true });
 
 const User = require('./models/user');
 const PORT = process.env.PORT || 9000;
