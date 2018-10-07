@@ -10,7 +10,10 @@ import io from 'socket.io-client';
 import { USER_CONNECTED, LOGOUT } from '../../Events';
 import ChatContainer from "../chats/ChatContainer";
 
-const socketUrl = "http://localhost:9000";
+const socketUrl = "/";
+//const socketUrl = "http://localhost:9000";
+//'ws://' + window.location.host + '/api/notifications/ws'
+//const socketUrl = window.location.host;
 
 
 
