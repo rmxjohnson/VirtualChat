@@ -1,56 +1,59 @@
 import React, { Component } from 'react';
+import './Messages.css';
 
 export default class MessageInput extends Component {
-	
+
 	constructor(props) {
-	  super(props);
-	
-	  this.state = {
-	  	message:"",
-	  	isTyping:false
-	  };
+		super(props);
+
+		this.state = {
+			message: "",
+			isTyping: false
+		};
 
 	}
-	
-	handleSubmit = (e)=>{
+
+	handleSubmit = (e) => {
 		e.preventDefault()
 		this.sendMessage()
-		this.setState({message:""})
+		this.setState({ message: "" })
+		console.log("IN THE HANDLE SUBMIT");
 	}
 
-	sendMessage = ()=>{
+	sendMessage = () => {
+		console.log("IN THE SENDMESSAGE");
 		this.props.sendMessage(this.state.message)
 
 	}
 
 	componentWillUnmount() {
-	  this.stopCheckingTyping()
+		this.stopCheckingTyping()
 	}
 
-	sendTyping = ()=>{
+	sendTyping = () => {
 		this.lastUpdateTime = Date.now()
-		if(!this.state.isTyping){
-			this.setState({isTyping:true})
+		if (!this.state.isTyping) {
+			this.setState({ isTyping: true })
 			this.props.sendTyping(true)
 			this.startCheckingTyping()
 		}
 	}
 
-	
-	startCheckingTyping = ()=>{
+
+	startCheckingTyping = () => {
 		console.log("Typing");
-		this.typingInterval = setInterval(()=>{
-			if((Date.now() - this.lastUpdateTime) > 300){
-				this.setState({isTyping:false})
+		this.typingInterval = setInterval(() => {
+			if ((Date.now() - this.lastUpdateTime) > 300) {
+				this.setState({ isTyping: false })
 				this.stopCheckingTyping()
 			}
 		}, 300)
 	}
-	
-	
-	stopCheckingTyping = ()=>{
+
+
+	stopCheckingTyping = () => {
 		console.log("Stop Typing");
-		if(this.typingInterval){
+		if (this.typingInterval) {
 			clearInterval(this.typingInterval)
 			this.props.sendTyping(false)
 		}
@@ -61,29 +64,29 @@ export default class MessageInput extends Component {
 		const { message } = this.state
 		return (
 			<div className="message-input">
-				<form 
-					onSubmit={ this.handleSubmit }
+				<form
+					onSubmit={this.handleSubmit}
 					className="message-form">
 
-					<input 
-						id = "message"
-						ref = {"messageinput"}
-						type = "text"
-						className = "form-control"
-						value = { message }
-						autoComplete = {'off'}
-						placeholder = "Start typing"
-						onKeyUp = { e => { e.keyCode !== 13 && this.sendTyping() } }
-						onChange = {
-							({target})=>{
-								this.setState({message:target.value})
+					<input
+						id="message"
+						ref={"messageinput"}
+						type="text"
+						className="form-control"
+						value={message}
+						autoComplete={'off'}
+						placeholder="Start typing"
+						onKeyUp={e => { e.keyCode !== 13 && this.sendTyping() }}
+						onChange={
+							({ target }) => {
+								this.setState({ message: target.value })
 							}
 						}
-						/>
+					/>
 					<button
-						disabled = { message.length < 1 }
-						type = "submit"
-						className = "send"
+						disabled={message.length < 1}
+						type="submit"
+						className="send"
 
 					> Send </button>
 				</form>

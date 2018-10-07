@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import './SideBar.css';
 import { SideBarOption } from './SideBarOption'
 import { differenceBy } from 'lodash'
 import { createChatNamesFromUsers } from '../../Factories'

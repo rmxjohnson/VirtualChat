@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import SideBar from '../sidebar/SideBar'
-import { COMMUNITY_CHAT, MESSAGE_SENT, MESSAGE_RECIEVED, TYPING, PRIVATE_MESSAGE } from '../../Events'
+import { COMMUNITY_CHAT, MESSAGE_SENT, MESSAGE_RECIEVED, TYPING, PRIVATE_MESSAGE, USER_CONNECTED, USER_DISCONNECTED, NEW_CHAT_USER } from '../../Events'
 import ChatHeading from './ChatHeading'
 import Messages from '../messages/Messages'
 import MessageInput from '../messages/MessageInput'
-import Navbar from '../Navbar/Navbar';
 import { values, differenceBy } from 'lodash'
 
 export default class ChatContainer extends Component {
@@ -31,15 +30,22 @@ export default class ChatContainer extends Component {
 		socket.off(this.NEW_CHAT_USER)
 	}
 
-
 	initSocket(socket) {
 		//const { socket, user } = this.prop
 		socket.emit(COMMUNITY_CHAT, this.resetChat)
 		socket.on(PRIVATE_MESSAGE, this.addChat)
 		socket.on('connect', () => {
-			console.log("connected to socket")
 			socket.emit(COMMUNITY_CHAT, this.resetChat)
 		})
+		socket.on(USER_CONNECTED, (users) => {
+			this.setState({ users: values(users) })
+		})
+		socket.on(USER_DISCONNECTED, (users) => {
+			const removedUsers = differenceBy(this.state.users, values(users))
+			//this.removeUsersFromChat(removedUsers)
+			this.setState({ users: values(users) })
+		})
+		socket.on(NEW_CHAT_USER, this.addMessageToChat)
 
 	}
 	sendOpenPrivateMessage = (receiver) => {
@@ -47,6 +53,25 @@ export default class ChatContainer extends Component {
 		socket.emit(PRIVATE_MESSAGE, { receiver, sender: user.name })
 	}
 
+	/*addUserToChat = ({ chatId, newUser }) => {
+		const { chat } = this.state
+		const newChat = chat.map(chat => {
+			if (chat.id === chatId) {
+				return Object.assign({}, chat, {users: [... chat.users, newUser ]})
+			}
+			return chat
+		} )
+		//this.setState({ chats:newChats})
+	}
+	removeUsersFromChat = removedUsers => {
+		const {chats } = this.state
+		const newChats = chats.map( chat => {
+			let newUsers = differenceBy(chat.users, removedUsers.map( u => u.name) )
+			 return Object.assign({}, chat, {user:newUsers})
+		
+		})
+		this.setState({ chats: newChats})
+	}*/
 
 
 
@@ -65,7 +90,6 @@ export default class ChatContainer extends Component {
 
 		const messageEvent = `${MESSAGE_RECIEVED}-${chat.id}`
 		const typingEvent = `${TYPING}-${chat.id}`
-		console.log("add chat event,", MESSAGE_RECIEVED, chat);
 
 		socket.on(typingEvent, this.updateTypingInChat(chat.id))
 		socket.on(messageEvent, this.addMessageToChat(chat.id))
@@ -110,7 +134,7 @@ export default class ChatContainer extends Component {
 
 	sendMessage = (chatId, message) => {
 		const { socket } = this.props
-		socket.emit("MESSAGE_SENT", { chatId, message })
+		socket.emit(MESSAGE_SENT, { chatId, message })
 	}
 
 
@@ -124,15 +148,15 @@ export default class ChatContainer extends Component {
 	}
 
 	render() {
-		const { user, logout } = this.props
-		const { chats, activeChat } = this.state
+		const { user, logout, } = this.props
+		const { chats, activeChat, users } = this.state
 		return (
-			<div className="container">
-				<Navbar></Navbar>
+			<div className="ChatContainer">
 				<SideBar
 					logout={logout}
 					chats={chats}
 					user={user}
+					users={users}
 					activeChat={activeChat}
 					setActiveChat={this.setActiveChat}
 					onSendPrivateMessage={this.sendOpenPrivateMessage}
@@ -142,7 +166,7 @@ export default class ChatContainer extends Component {
 						activeChat !== null ? (
 
 							<div className="chat-room">
-								<ChatHeading name={activeChat.name} numberOfUsers={5} />
+								<ChatHeading name={activeChat.name} />
 								<Messages
 									messages={activeChat.messages}
 									user={user}

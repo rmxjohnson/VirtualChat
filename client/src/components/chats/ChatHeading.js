@@ -1,4 +1,5 @@
 import React from 'react';
+import './ChatContainer.css';
 // import FAVideo from 'react-icons/lib/fa/video-camera'
 
 

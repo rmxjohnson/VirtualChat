@@ -116,7 +116,7 @@ export default class Login extends React.Component {
         return (
             <div>
                 <Navbar></Navbar>
-                <div>
+                <div className="Login">
                     {/* <Link to='/'>Go to Home</Link>
                     <br />
                     <Link to='/signup'>Go to SignUp</Link>

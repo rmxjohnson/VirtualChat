@@ -12,8 +12,7 @@ import ChatContainer from "../chats/ChatContainer";
 
 const socketUrl = "/";
 //const socketUrl = "http://localhost:9000";
-//'ws://' + window.location.host + '/api/notifications/ws'
-//const socketUrl = window.location.host;
+
 
 
 
@@ -93,7 +92,7 @@ export default class Chat extends React.Component {
     initSocket = () => {
         const socket = io(socketUrl)
 
-        socket.on('connect', () => {
+        socket.once('connect', () => {
             console.log("Connected from chat");
         })
 
@@ -127,8 +126,8 @@ export default class Chat extends React.Component {
         }
         return (
             <div>
-                {/* <Navbar></Navbar>
-                <h1 className="HUMP"><span className="RecluseWord">Recluse</span><span className="LetLooseWord"> Let Loose</span></h1>
+                <Navbar></Navbar>
+                {/*<h1 className="HUMP"><span className="RecluseWord">Recluse</span><span className="LetLooseWord"> Let Loose</span></h1>
                 <h1>my chat room</h1>
                 <Link to='/'>Go to Home</Link>
                 <br />

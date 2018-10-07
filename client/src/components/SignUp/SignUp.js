@@ -167,7 +167,7 @@ export default class Signup extends React.Component {
             <div>
 
                 <Navbar></Navbar>
-                <div>
+                <div className="SignUp">
                     <h1 className="HUMP"><span className="RecluseWord">Recluse</span><span className="LetLooseWord"> Let Loose</span></h1>
                     {/* <Link to='/'>Go to Home</Link>
                     <br />
@@ -229,17 +229,7 @@ export default class Signup extends React.Component {
                             <div>
                                 <img alt='profile-picture' src={this.state.profilepic} style={{ height: 100, width: 100 }} />
                             </div>
-                            {/* <ImagesUploader
-                                url="http://localhost:3000/notmultiple"
-                                optimisticPreviews
-                                multiple={false}
-                                onLoadEnd={(err) => {
-                                    if (err) {
-                                        console.error(err);
-                                    }
-                                }}
-                                label="Upload a picture"
-                            /> */}
+
                         </div>
                         <button id="SignUpSubmit" disabled={this.state.isSubmitButtonDisabled}>Submit</button><button type="button" id="SignUpCancel" onClick={this.clearFields}>Cancel</button>
                     </form>

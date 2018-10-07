@@ -1,7 +1,4 @@
-body {
-    /* background-image: url('https://images2.alphacoders.com/437/437652.jpg'); */
-    background-image: url('../../assets/images/login-signup-background.jpg');
-}
+
 .LogInSubmit {
     background-color: rgb(255, 38, 0);
     border-radius: 10%;
@@ -57,7 +54,4 @@ input {
 }
 .LoginInput{
     margin-left: 10%;
-}
-body{
-    color: white;
 }

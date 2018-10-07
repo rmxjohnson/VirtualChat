@@ -71,7 +71,7 @@ module.exports = function (socket) {
 		callback(communityChat)
 	})
 
-	socket.on(MESSAGE_SENT, ({ chatId, message }) => {
+	socket.once(MESSAGE_SENT, ({ chatId, message }) => {
 		sendMessageToChatFromUser(chatId, message)
 	})
 

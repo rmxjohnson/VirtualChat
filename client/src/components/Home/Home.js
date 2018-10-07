@@ -10,7 +10,7 @@ export default class Home extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="Home">
                 <Navbar></Navbar>
                 <h1 className="HUMP"><span className="RecluseWord">Recluse</span><span className="LetLooseWord"> Let Loose</span></h1>
                 <Footer></Footer>
