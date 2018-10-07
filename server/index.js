@@ -39,7 +39,10 @@ app.use(cors());
 // Use body-parser for handling form submissions
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(require('express').static(path.join(__dirname, '/../client/build')));
+if (process.env.NODE_ENV === 'production') {
+    app.use(require('express').static(path.join(__dirname, '/../client/build')));
+}
+//app.use(require('express').static(path.join(__dirname, '/../client/build')));
 
 // Routes - Server
 app.get('/', (req, res) => {
@@ -261,6 +264,10 @@ app.post('/updateprofile', (req, res) => {
 
 
 // const PORT = process.env.PORT || 3231
+app.get("/*", (req, res) => {
+
+    res.sendFile(path.join(__dirname, "/../client/build/index.html"));
+});
 
 
 
