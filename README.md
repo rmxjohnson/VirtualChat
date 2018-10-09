@@ -1,4 +1,4 @@
-# Bubblink React App
+# BubbLink React App
 
 Project 3 - CWRU Full-Stack Web Development Bootcamp
 October 2018
@@ -7,53 +7,71 @@ Daniel Kelley, Brad Hersey, Joe Wancho, Melinda Russell, Rhonda Johnson
 
 ## Overview
 
-MongoNewsScraper is a web app that lets users view and leave comments on the latest news from the New York Times.  
-It incorporates Mongoose and Cheerio to scrape the website
+Bubblink is an app that allows users to develop relationships with others from the comfort of their own home.
 
-Handlebars are used to generate the HTML.
 
 # Link to deployed project
-https://mongoscraper199.herokuapp.com/
+https://bubblink.herokuapp.com/
+
+[Click here](https://bubblink.herokuapp.com/) to view the deployed version.
 
 # Links to GitHub
-https://github.com/rmxjohnson/MongoNewsScraper.git
+https://github.com/rmxjohnson/VirtualChat.git
 
-https://rmxjohnson.github.io/MongoNewsScraper/
+## Technologies used:
+* ReactJS
+* NodeJS
+* Express
+* MongoDB/Mongoose
+* CSS3 including CSS grid
+* HTML5
 
-# Built with:
- * Node.js
- * express NPM package
- * express-Handlebars
- * body-parser NPM Package
- * mongoose
- * request
 
-## Home Page
+* Node Packages:
+  * axios
+  * body-parser
+  * bcryptjs
+  * concurrently
+  * express
+  * mongoose
+  * react
+  * react-bootstrap
+  * react-dom
+  * react-select-us-states
+  * socket.io
+  * uuid
+ 
+
+## "Home" Page
+ Home page - overview of developers of app
 
 ![home.png](client/src/assets/images/home.png)
 
-## "Login" Page
-
-![login.png](client/src/assets/images/login.png)
-
 ## "SignUp" Page
+## New Users must sign up for an account
 
 ![signup.png](client/src/assets/images/signup.png)
 
-## "Profile" Page
+## "Login" Page
+## Or returning users can simply log in
 
-![profile.png](client/src/assets/images/profile.png)
+![login.png](client/src/assets/images/login.png)
 
 ## "Community Chat" Page
+## Once logged in, users are redirected to the community chat page
 
 ![communitychat.png](client/src/assets/images/communitychat.png)
 
+## "Profile" Page
+## User can also modify their profile 
+
+![profile.png](client/src/assets/images/profile.png)
 
 
 # Additional Features
- * Article headlines are unique - duplicates are not added to the database
- * Users can leave comments on articles that have been "saved"
- * Comments are saved to the database and associated with their corresponding articles
- * Users can delete comments left on articles
- * All stored comments are visible to every user
- * Users can select "Remove All Articles" to remove all article and comments from the database
+ * xxxxxx
+ * xxxxxx
+ * xxxxx
+ * xxxxx
+ * xxxxx
+ * xxxxx
