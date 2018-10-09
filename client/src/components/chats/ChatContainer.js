@@ -29,7 +29,10 @@ export default class ChatContainer extends Component {
 		socket.off(USER_CONNECTED)
 		socket.off(USER_DISCONNECTED)
 		socket.off(this.NEW_CHAT_USER)
+		socket.close();
 	}
+
+
 
 
 
