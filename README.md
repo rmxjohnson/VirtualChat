@@ -5,10 +5,15 @@ October 2018
 
 Daniel Kelley, Brad Hersey, Joe Wancho, Melinda Russell, Rhonda Johnson
 
+## "Home" Page
+ Home page - overview of developers of app
+
+![home.png](client/src/assets/images/home.png)
+
+
 ## Overview
 
 Bubblink is an app that allows users to develop relationships with others from the comfort of their own home.
-
 
 # Link to deployed project
 https://bubblink.herokuapp.com/
@@ -41,11 +46,6 @@ https://github.com/rmxjohnson/VirtualChat.git
   * socket.io
   * uuid
  
-
-## "Home" Page
- Home page - overview of developers of app
-
-![home.png](client/src/assets/images/home.png)
 
 ## "SignUp" Page
 ## New Users must sign up for an account
