@@ -1,21 +1,43 @@
-.navbar {
-    margin-left: 38%;
+.nav2 {
+    margin-left: 25%;
     width: 25%;
     background-color: transparent;
-    font-family: 'Ruslan Display', cursive;
+    font-family: 'Anton', sans-serif;
     color: white;
-    font-size: 25px;
-    border-style: ridge;
-    border-color: rgb(88, 50, 0);
-    border-width: 8px;
-    border-radius: 10%;
-
+    font-size: 35px;
+    /* border-top:none;
+    border-right: none; */
+    border: none;  
+    transform-style: preserve-3;
+    text-decoration: underline;
+	color: rgb(255, 254, 254);
+	word-spacing: 1%;
 }
 
-a {
-    margin: 10px;
-    color: rgb(255, 254, 254);
+.SignOutProfile{
+	margin-left: 100%;
 }
 
+ @keyframes bounce {
+	0%, 20%, 60%, 100% {
+		-webkit-transform: translateY(0);
+		transform: translateY(0);
+	}
+
+	40% {
+		-webkit-transform: translateY(-10px);
+		transform: translateY(-10px);
+	}
+
+	80% {
+		-webkit-transform: translateY(-5px);
+		transform: translateY(-5px);
+	}
+}
+
+
+.nav2:hover {
+	animation: bounce 2s;
+} 
 
 

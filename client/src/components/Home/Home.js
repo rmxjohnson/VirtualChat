@@ -1,8 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import './Home.css';
 import Footer from '../Footer/Footer';
 import Navbar from '../Navbar/Navbar';
+import Jumbotron1 from '../AboutUs/Aboutus';
+import BigLogo1 from '../BigLogo/BigLogo';
+import BubbleFun1 from '../BubbleFun/BubbleFun';
 
 
 export default class Home extends React.Component {
@@ -10,10 +12,13 @@ export default class Home extends React.Component {
 
     render() {
         return (
-            <div className="Home">
-                <Navbar></Navbar>
-                <h1 className="HUMP"><span className="RecluseWord">Recluse</span><span className="LetLooseWord"> Let Loose</span></h1>
-                <Footer></Footer>
+            <div className='HomeBackGround'>
+                <Navbar/>
+               <Jumbotron1 /> 
+               <BigLogo1/>
+              <BubbleFun1/>
+                <Footer/>
+            
             </div>
         );
     }

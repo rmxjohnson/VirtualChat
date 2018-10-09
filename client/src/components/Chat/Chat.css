@@ -55,3 +55,18 @@ input {
 .LoginInput{
     margin-left: 10%;
 }
+
+.gotoProfile{
+    border-radius: 10%;
+    color:white;
+    font-family: 'Fredoka One', cursive;
+    text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+    letter-spacing: 2px;
+    border-style: double;
+    border-color: silver;
+    border-width: 4px;
+    margin-left: 2%;
+    border-width: 4px;
+    margin-left: 10%;
+
+}

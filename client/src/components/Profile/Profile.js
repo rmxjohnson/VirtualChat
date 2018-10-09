@@ -6,13 +6,13 @@ import SelectUSState from 'react-select-us-states';
 import "./Profile.css";
 import Footer from '../Footer/Footer';
 import Navbar2 from '../Navbar2/Navbar2';
+import BigLogo from '../../assets/images/Bubblink.png';
 
 export default class Profile extends React.Component {
 
     // componentDidMount = () => {
 
     // }
-
 
 
     constructor(props) {
@@ -75,22 +75,6 @@ export default class Profile extends React.Component {
         this.setState(this.initialState);
     }
 
-    // here is file changed handler
-    fileChangedHandler = (event) => {
-        if (event.target.files.length == 0) {
-            return
-        }
-        const file = event.target.files[0]
-        this.setState({ ...this.state, file: file })
-    }
-
-    // here is upload handler
-    uploadHandler = () => {
-        console.log('File info: ' + this.state.file)
-        // from sample website on how to upload
-        // axios.post('my-domain.com/file-upload', this.state.selectedFile)
-    }
-
     // when user selects "Update Profile"
     onSubmit = (event) => {
         event.preventDefault();
@@ -139,6 +123,10 @@ export default class Profile extends React.Component {
                 console.log('catch error', err);
                 alert('Error in profile change  Request');
             });
+        (() => {
+            ("h1").lettering();
+        });
+
     }
 
     gotoChat = () => {
@@ -151,7 +139,6 @@ export default class Profile extends React.Component {
             redirectToChat: true
         });
     }
-
 
 
     render() {
@@ -169,59 +156,70 @@ export default class Profile extends React.Component {
         }
 
 
-        // console.log("Original State = ", originalState);
         console.log("I am in the profile page");
         console.log("profile props = ", this.props.location.state.profile);
         console.log('Render State: ', this.state);
         return (
             <div className="profile-back">
-                {/* <h2>Profile Component</h2>
-                <Link to='/'>Go to Home</Link>
-                <br />
-                <Link to='/login'>Go to Login</Link>
-                <br />
-                <Link to='/signup'>Go to SignUp</Link> */}
-                <Navbar2 id="profile-nav"></Navbar2>
-                <h1 className="profile-logo">Your Profile</h1>
-                {/* <form>
-                    <div>
-                        <label htmlFor=""></label>
-                        <input type="email">
+
+
+                <button className="GotoChatBtn" type="button" onClick={this.gotoChat} >GoTo Chat</button>
+                <div id="page-wrap">
+                    <div className="badge" >
+                        <h1><span className="char1">Y</span><span className="char2">o</span><span className="char3">u</span><span className="char4">r</span><span className="char5"></span><span className="char6">P</span><span className="char7">r</span><span className="char8">o</span><span className="char9">f</span><span className="char10">i</span><span className="char11">l</span><span className="char12">e</span></h1>
+
                     </div>
-                </form>  */}
-                {/* <h2>profile Form</h2> */}
+                </div>
                 <form onSubmit={this.onSubmit} id="profile-form">
                     <div>
-                        {/* <label htmlFor="">Email</label>
-                        <br /> */}
-                        <input type="email" name='email' placeholder='email' defaultValue={this.state.email} disabled />
-                    </div>
-                    {/* <div>
-                        <label htmlFor="">Password</label>
-                        <input type="password" name='password' placeholder='password' defaultValue={this.state.password} disabled />
-                    </div> */}
-                    <div>
-                        <label htmlFor="">Display Name</label>
-                        <br />
-                        <input type="text" name='user' placeholder='Display Name' value={this.state.user} required onChange={this.handleChange} />
+                        <div>
+                            <img alt='profile-picture' className="ProfilePicture" src={this.state.profilepic} style={{ height: 100, width: 100 }} />
+                        </div>
+
+                        <div>
+                            <label className="labelProfile" htmlFor="">Profile Pic</label>
+                            <br />
+                            <input type="string" className="profileInput" name='profilepic' placeholder='profile image' value={this.state.profilepic} required onChange={this.handleChange} />
+
+                        </div>
+
+                        <input type="email" className="profileInput" name='email' placeholder='email' defaultValue={this.state.email} disabled />
                     </div>
 
                     <div>
-                        <label htmlFor="">Your Name</label>
+                        <label className="labelProfile" htmlFor="">Display Name</label>
                         <br />
-                        <input type="text" name='yourname' placeholder='Your Name (First and Last)' value={this.state.yourname} required onChange={this.handleChange} />
+                        <input type="text" className="profileInput" name='user' placeholder='Display Name' value={this.state.user} required onChange={this.handleChange} />
+                    </div>
+
+                    <div>
+                        <label className="labelProfile" htmlFor="">Your Name</label>
+                        <br />
+                        <input type="text" className="profileInput" name='yourname' placeholder='Your Name (First and Last)' value={this.state.yourname} required onChange={this.handleChange} />
                     </div>
                     <div>
-                        <label htmlFor="">Age</label>
+                        <label id='AGEProfile' className="labelProfile" htmlFor="">Age</label>
                         <br />
-                        <input type="number" name='age' placeholder='age' value={this.state.age} required onChange={this.handleChange} />
+                        <input type="number" className="profileInput" name='age' placeholder='age' value={this.state.age} required onChange={this.handleChange} />
                     </div>
                     <div>
-                        <label htmlFor="">City</label>
+                        <label id='CITYProflie' className="labelProfile" htmlFor="">City</label>
                         <br />
-                        <input type="string" name='city' placeholder='city' value={this.state.city} required onChange={this.handleChange} />
+                        <input type="string" className="profileInput" name='city' placeholder='city' value={this.state.city} required onChange={this.handleChange} />
                     </div>
                     <div>
+                        <label className="labelProfile" htmlFor="">Your State</label>
+                        <br />
+                        <input type="string" className="profileInput" name='yourstate' placeholder='state' value={this.state.yourstate} required disabled onChange={this.handleChangeUSState} />
+                        <br />
+                        <label htmlFor="" className="labelProfile">Modify your State Below</label>
+                        <br />
+                        <SelectUSState id="myId" className="profileInput" placeholder="State" required onChange={this.handleChangeUSState} />
+                        <br />
+                    </div>
+
+
+                    {/* <div>
 
                         <label htmlFor="">Your State</label>
                         <br />
@@ -231,27 +229,16 @@ export default class Profile extends React.Component {
                         <br />
                         <SelectUSState id="myId" className="myClassName" placeholder="State" required onChange={this.handleChangeUSState} />
                         <br />
-                    </div>
+                    </div> */}
 
-                    <div>
-                        <label htmlFor="">Profile Pic (url only)</label>
-                        <br />
-                        <input type="string" name='profilepic' placeholder='profile image' value={this.state.profilepic} required onChange={this.handleChange} />
-                        <div>
-                            <img alt='profile-picture' src={this.state.profilepic} style={{ height: 100, width: 100 }} />
-                        </div>
 
-                    </div>
-                    <button disabled={this.state.isUpdateButtonDisabled}>Update Profile</button><button type="button" onClick={this.resetFields} >Cancel</button>
-                    <button className="gotoChat" type="button" onClick={this.gotoChat} >GoTo Chat</button>
+                    <button className="UpdateProfileBtn" disabled={this.state.isUpdateButtonDisabled}>Update Profile</button><button type="button" onClick={this.resetFields} className="ProfileCancelBtn">Cancel</button>
+
+                    {/* <button className="gotoChat" type="button" onClick={this.gotoChat} >GoTo Chat</button> */}
                 </form>
-
-                {/* <input type='file' onChange={this.fileChangedHandler} placeholder='image upload'></input>
-                <button onClick={this.uploadHandler}>Upload!</button> */}
-                <Footer></Footer>
+                <Navbar2 id="profile-nav"></Navbar2>
+                <Footer />
             </div>
         );
-
-
     }
 }

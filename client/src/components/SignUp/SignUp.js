@@ -9,6 +9,8 @@ import 'react-images-uploader/font.css';
 import Navbar from '../Navbar/Navbar';
 import Footer from '../Footer/Footer';
 import "./Signup.css";
+import BigLogo1 from '../BigLogo/BigLogo';
+import BubbleFun1 from '../BubbleFun/BubbleFun';
 
 
 export default class Signup extends React.Component {
@@ -101,7 +103,7 @@ export default class Signup extends React.Component {
             url: '/signup',
             method: 'POST',
             data: {
-                user: this.state.user,
+                user: this.state.displayname,
                 email: this.state.email,
                 password: this.state.password,
                 yourname: this.state.yourname,
@@ -126,11 +128,11 @@ export default class Signup extends React.Component {
                         //     isSubmitButtonDisabled: false
                         // });
                         this.setState({ redirectToLogin: true });
-                        // this.clearFields();
+                        //this.clearFields();
                         console.log("After ClearFields");
                         break;
                     case 500:
-                        alert('Email already used. Enter another email ');
+                        alert('Email already used.  Enter another email');
                         break;
                     default:
                         alert('Other status: ', response.data.status);
@@ -163,78 +165,60 @@ export default class Signup extends React.Component {
                 pathname: '/login'
             }} />);
         }
+
         return (
             <div>
 
-                <Navbar></Navbar>
-                <div className="SignUp">
-                    <h1 className="HUMP"><span className="RecluseWord">Recluse</span><span className="LetLooseWord"> Let Loose</span></h1>
-                    {/* <Link to='/'>Go to Home</Link>
-                    <br />
-                    <Link to='/login'>Go to Login</Link>
-                    <br />
-                    <Link to='/profile'>Go to Profile</Link>
-                    <h2>SignUp Form</h2> */}
+                <Navbar />
+                <div>
                     <form className="SIGNUP" onSubmit={this.onSubmit} id="signup-form">
 
                         <div>
                             <label htmlFor=""></label>
-                            <input type="email" className="Email " name='email' placeholder='Email (Your Login Id)' required onChange={this.handleChange} />
+                            <input type="email" className="SignUpInput " name='email' placeholder='Email (Your Login Id)' required onChange={this.handleChange} />
                         </div>
                         <div>
                             <label htmlFor=""></label>
-                            <input type="password" className="PasswordSUP" name='password' placeholder='Password' required onChange={this.handleChange} />
+                            <input type="password" className="SignUpInput" name='password' placeholder='Password' required onChange={this.handleChange} />
                         </div>
                         <div >
                             <label htmlFor=""></label>
-                            <input type="text" className="DisplayName" name='user' placeholder='Display Name' required onChange={this.handleChange} />
+                            <input type="text" className="SignUpInput" name='displayname' placeholder='Display Name' required onChange={this.handleChange} />
                         </div>
                         <div>
                             <label htmlFor=""></label>
-                            <input type="text" className="YourName" name='yourname' placeholder='Your Name (First and Last)' required onChange={this.handleChange} />
+                            <input type="text" className="SignUpInput" name='yourname' placeholder='Your Name (First and Last)' required onChange={this.handleChange} />
                         </div>
                         <div>
                             <label htmlFor=""></label>
-                            <input type="number" className="Age" name='age' placeholder='Age' required onChange={this.handleChange} />
+                            <input type="number" className="SignUpInput" name='age' placeholder='Age' required onChange={this.handleChange} />
                         </div>
                         <div>
                             <label htmlFor=""></label>
-                            <input type="string" className="City" name='city' placeholder='City' required onChange={this.handleChange} />
+                            <input type="string" className="SignUpInput" name='city' placeholder='City' required onChange={this.handleChange} />
                         </div>
                         <div>
                             <label id="SS" htmlFor="">Select a State</label>
                             <br />
-                            {/* <input type="string" name='yourstate' placeholder='state' required onChange={this.handleChange} /> */}
-                            <SelectUSState id="myId" className="myClassName" placeholder="State" required onChange={this.handleChangeUSState} />
 
-
+                            <SelectUSState id="myId" className="SignUpInput" placeholder="State" required onChange={this.handleChangeUSState} />
+                            <BubbleFun1 />
+                            <BigLogo1 />
 
                         </div>
 
-                        {/* <div>
-                            <p>Something here</p>
-                            <ImageUploader
-                                withIcon={true}
-                                withPreview={true}
-                                buttonText='Choose Profile Picture'
-                                onChange={this.onDrop}
-                                imgExtension={['.jpg', '.gif', '.png', '.gif']}
-                                maxFileSize={5242880}
-                                singleImage={true}
-                            />
-                        </div> */}
                         <div>
                             <label htmlFor=""></label>
-                            <input type="string" name='profilepic' placeholder='Profile Image' required onChange={this.handleChange} />
+                            <input type="string" className="SignUpInput" name='profilepic' placeholder='Profile URL Image' required onChange={this.handleChange} />
                             <div>
-                                <img alt='profile-picture' src={this.state.profilepic} style={{ height: 100, width: 100 }} />
+                                <img alt='profile-picture' className='SignUpPP' src={this.state.profilepic} style={{ height: 100, width: 100 }} />
                             </div>
 
                         </div>
                         <button id="SignUpSubmit" disabled={this.state.isSubmitButtonDisabled}>Submit</button><button type="button" id="SignUpCancel" onClick={this.clearFields}>Cancel</button>
                     </form>
                 </div>
-                <Footer></Footer>
+                <Footer />
             </div>
         );
     }

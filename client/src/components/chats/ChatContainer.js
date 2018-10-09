@@ -37,7 +37,7 @@ export default class ChatContainer extends Component {
 		//const { socket, user } = this.prop
 		// socket.emit(COMMUNITY_CHAT, this.resetChat)
 		socket.on(PRIVATE_MESSAGE, this.addChat)
-		socket.once('connect', () => {
+		socket.on('connect', () => {
 			socket.emit(COMMUNITY_CHAT, this.resetChat)
 		})
 		socket.on(USER_CONNECTED, (users) => {

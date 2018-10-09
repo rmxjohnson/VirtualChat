@@ -1,20 +1,36 @@
 .navbar {
-    margin-left: 7%;
-    width: 25%;
+    margin-left: 8%;
+    width: 35%;
     background-color: transparent;
-    font-family: 'Ruslan Display', cursive;
+    font-family: 'Fredoka One', cursive;
     color: white;
     font-size: 25px;
-    border-style: ridge;
-    border-color: rgb(88, 50, 0);
+    border-style: double;
+    border-color:silver;
     border-width: 8px;
     border-radius: 10%;
+    text-shadow: -2px 0 silver, 0 2px silver, 2px 0 silver, 0 -2px silver;
 
 }
 
-a {
-    margin: 10px;
+.LoginLink{  
+    text-decoration: underline;
+    margin-left: 25%;
+    font-size: 25px;
     color: rgb(255, 254, 254);
+
+}
+.SignUpLink {
+    text-decoration: underline;
+    margin-left: 5%;
+    font-size: 25px;
+    color: rgb(255, 254, 254);
+}
+.logo{
+    border-radius: 20%;
+    height: 60px;
+    width: 100px;
+    
 }
 
 

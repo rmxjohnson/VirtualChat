@@ -6,7 +6,8 @@ import "./Login.css";
 import Profile from '../Profile/Profile';
 import Footer from '../Footer/Footer';
 import Navbar from '../Navbar/Navbar';
-import Chat from '../Chat/Chat';
+import BigLogo1 from '../BigLogo/BigLogo';
+import BubbleFun1 from '../BubbleFun/BubbleFun';
 
 
 
@@ -78,9 +79,8 @@ export default class Login extends React.Component {
                     .then((res2) => {
                         console.log("Profile info");
                         console.log(res2);
-                        this.setState({ validLoggin: true, profile: res2.data }, () => {
-                            console.log("loggin boolean", this.state.validLoggin)
-                        });
+                        this.setState({ validLoggin: true, profile: res2.data });
+                        console.log("loggin boolean", this.state.validLoggin)
                     })
                     .catch(function (error) {
                         console.log('Error getting the profile on login', error);
@@ -108,22 +108,15 @@ export default class Login extends React.Component {
             console.log("In the IF statement", this.state.profile);
             // if valid LogIn, redirect to the profile page
             return (<Redirect to={{
-                //pathname: '/profile',
+                // pathname: '/profile',
                 pathname: '/chat',
                 state: this.state.profile
             }} />);
         }
         return (
             <div>
-                <Navbar></Navbar>
-                <div className="Login">
-                    {/* <Link to='/'>Go to Home</Link>
-                    <br />
-                    <Link to='/signup'>Go to SignUp</Link>
-                    <br />
-                    <Link to='/profile'>Go to Profile</Link>
-                    <h2>Login Form</h2> */}
-                    <h1 className="HUMP"><span className="RecluseWord">Recluse</span><span className="LetLooseWord"> Let Loose</span></h1>
+                <Navbar />
+                <div>
                     <form onSubmit={this.onSubmit}>
                         <div>
                             <label htmlFor=""></label>
@@ -133,13 +126,14 @@ export default class Login extends React.Component {
                             <label htmlFor=""></label>
                             <input className="LoginInput" type="password" name='password' placeholder='password' onChange={this.handleChange} />
                         </div>
-                        <button className="LogInSubmit" disabled={this.state.isSubmitButtonDisabled}>Submit</button>
+                        <button className="LogInSubmitBtn" disabled={this.state.isSubmitButtonDisabled}>Submit</button>
                         <br />
-                        {/* <button type="button" onClick={this.handleSignUp}>SignUp</button> */}
-
                     </form>
+
+                    <BigLogo1 />
+                    <BubbleFun1 />
                 </div>
-                <Footer></Footer>
+                <Footer />
             </div>
         );
     }

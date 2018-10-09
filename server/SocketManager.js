@@ -58,12 +58,12 @@ module.exports = function (socket) {
 
 
 
-	socket.on(LOGOUT, () => {
-		connectedUsers = removeUser(connectedUsers, socket.user.name)
-		io.emit(USER_DISCONNECTED, connectedUsers)
-		console.log("Disconnect", connectedUsers);
+	// socket.on(LOGOUT, () => {
+	// 	connectedUsers = removeUser(connectedUsers, socket.user.name)
+	// 	io.emit(USER_DISCONNECTED, connectedUsers)
+	// 	console.log("Disconnect", connectedUsers);
 
-	})
+	// })
 
 	//Get Community Chat
 	socket.on(COMMUNITY_CHAT, (callback) => {
@@ -71,7 +71,7 @@ module.exports = function (socket) {
 		callback(communityChat)
 	})
 
-	socket.once(MESSAGE_SENT, ({ chatId, message }) => {
+	socket.on(MESSAGE_SENT, ({ chatId, message }) => {
 		sendMessageToChatFromUser(chatId, message)
 	})
 

@@ -44,14 +44,14 @@ export default class SideBar extends Component {
 		console.log("In the sidebar Users array", users);
 		return (
 			<div>
-				<div id="side-bar">
+				{/* <div id="side-bar">
 					<div className="heading">
 						<div className="app-name">Chat Rooms </div>
 						<div className="menu">
 
 						</div>
 					</div>
-				</div>
+				</div> */}
 				<form onSubmit={this.handleSubmit} className="search">
 					<input placeholder="Search"
 						type="text"
@@ -60,13 +60,7 @@ export default class SideBar extends Component {
 					<div className="plus"></div>
 				</form>
 
-				<div className="side-bar-select">
-					<div
-						onClick={() => { this.setActiveSideBar(SideBar.type.CHATS) }}
-						className={`side-bar-select_option ${(activeSideBar === SideBar.type.CHATS) ? 'active' : ''}`}>
-						<span>CHATS</span>
-					</div>
-				</div>
+
 				<div
 					onClick={() => { this.setActiveSideBar(SideBar.type.USERS) }}
 					className={`side-bar-select_option ${(activeSideBar === SideBar.type.USERS) ? 'active' : ''}`} >
@@ -74,14 +68,15 @@ export default class SideBar extends Component {
 				</div>
 
 
+
+
 				<div
 					className="users"
 					ref='users'
 					onClick={(e) => { (e.target === this.refs.user) && setActiveChat(null) }}>
 
-
-					{
-						/*activeSideBar === SideBar.type.CHATS ?
+					{/* {
+						activeSideBar === SideBar.type.CHATS ?
 							chats.map((chat) => {
 								if (chat.name) {
 									return (
@@ -93,41 +88,23 @@ export default class SideBar extends Component {
 										/>
 									)
 								}
-								
-							
-							//})*/
 
-						// users.map((otherUser) => {
-						// 	console.log("other user = ", otherUser);
-						// 	console.log(this.addChatForuser);
-						// 	var clickHandler = this.addChatForUser;
-
-						// 	return (
-						// 		<SideBarOption
-						// 			key={otherUser.id}
-						// 			name={otherUser.name}
-						// 			onClick={() => {
-						// 				return
-						// 				clickHandler(otherUser.name)
-						// 			}}
+								return null
+							})
 
 
-
-						// 		/>
-						// 	)
-						// })
-
-						// differenceBy(users, [user], 'name').users.map((otherUser) => {
-						// 	console.log("other user = ", otherUser);
-						// 	return (
-						// 		<SideBarOption
-						// 			key={otherUser.id}
-						// 			name={otherUser.name}
-						// 			onClick={() => { this.addChatForUser(otherUser.name) }}
-						// 		/>
-						// 	)
-						// })
-					}
+							:
+							differenceBy(users, [user], 'name').users.map((otherUser) => {
+								console.log(users)
+								return (
+									<SideBarOption
+										key={otherUser.id}
+										name={otherUser.name}
+										onClick={() => { this.addChatForUser(otherUser.name) }}
+									/>
+								)
+							})
+					} */}
 
 				</div>
 				<div className="current-user">
@@ -136,9 +113,15 @@ export default class SideBar extends Component {
 
 					</div>
 				</div>
+
+				<div className="side-bar-select">
+					<div
+						onClick={() => { this.setActiveSideBar(SideBar.type.CHATS) }}
+						className={`side-bar-select_option ${(activeSideBar === SideBar.type.CHATS) ? 'active' : ''}`}>
+						<span>CHATS</span>
+					</div>
+				</div>
 			</div>
 		);
 	}
 }
-
-

@@ -92,13 +92,50 @@ export default class Chat extends React.Component {
     initSocket = () => {
         const socket = io(socketUrl)
 
-        socket.once('connect', () => {
+        socket.on('connect', () => {
             console.log("Connected from chat");
         })
 
         this.setState({ socket })
     }
 
+    // initSocket = () => {
+    //     const socket = io(socketUrl)
+
+    //     socket.on('connect', () => {
+    //         if (this.state.user) {
+    //             this.reconnect(socket)
+    //         }
+    //         else {
+    //             console.log("Connected from chat");
+    //         }
+
+    //     })
+
+    //     this.setState({ socket })
+    // }
+
+    // reconnect = (socket) => {
+    //     socket.emit(VERIFY_USER, this.state.user.name, ({ isUser, user }) => {
+    //         if (isUser) {
+    //             this.setState({ user: null })
+    //         }
+    //         else {
+    //             this.setUser(user)
+    //         }
+    //     })
+    // }
+
+    // reconnect = (socket) => {
+    //     socket.emit(VERIFY_USER, this.state.user.name, ({ isUser, user }) => {
+    //         if (isUser) {
+    //             this.setState({ user: null })
+    //         }
+    //         else {
+    //             this.setUser(user)
+    //         }
+    //     })
+    // }
 
     setUser = (user) => {
         const { socket } = this.state
@@ -107,12 +144,12 @@ export default class Chat extends React.Component {
     }
 
 
-    logout = () => {
-        const { socket } = this.state
-        socket.emit(LOGOUT)
-        this.setState({ user: null })
+    // logout = () => {
+    //     const { socket } = this.state
+    //     socket.emit(LOGOUT)
+    //     this.setState({ user: null })
 
-    }
+    // }
 
     render() {
         if (this.state.redirectToProfile) {

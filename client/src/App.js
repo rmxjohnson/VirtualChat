@@ -11,6 +11,7 @@ import Login from './components/Login/Login.js';
 import SignUp from './components/SignUp/SignUp.js';
 import Profile from './components/Profile/Profile.js';
 import Chat from './components/Chat/Chat.js';
+//import BubbleFun1 from './components/BubbleFun/BubbleFun';
 
 // function DummyComponent() {
 //   return <h2>Hello World</h2>;
@@ -48,24 +49,25 @@ const PrivateRoute = ({ component: Component, path: url }) => (
 
 class App extends Component {
 
-  componentDidMount = () => {
-    //Fetch
-    fetch('/about')
-      .then((data) => data.json())
-      .then(function (data) {
-        console.log('Data: ', data);
-      })
+  // componentDidMount = () => {
+  //   //Fetch
+  //   fetch('/about')
+  //     .then((data) => data.json())
+  //     .then(function (data) {
+  //       console.log('Data: ', data);
+  //     })
 
-      .catch(() => {
+  //     .catch(() => {
 
-      });
+  //     });
 
 
-  };
+  // };
 
   render() {
     return (
       <div className="App">
+        {/* <BubbleFun1 /> */}
         {/* <Route exact path='/' component={DummyComponent} />
         <Route exact path='/about' component={DummyComponent1} /> */}
         {/* <Route exact path='/' component={DummyComponent} /> */}
