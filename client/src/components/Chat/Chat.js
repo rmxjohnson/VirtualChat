@@ -1,14 +1,18 @@
-import React, { Component } from 'react';
-import { Link, BrowserRouter } from 'react-router-dom';
+import React from 'react';
+//import React, { Component } from 'react';
+//import { Link, BrowserRouter } from 'react-router-dom';
 import './Chat.css';
-import { Route, Redirect } from 'react-router'
-import axios from 'axios';
-import Profile from '../Profile/Profile';
+//import { Route, Redirect } from 'react-router'
+import { Redirect } from 'react-router'
+//import axios from 'axios';
+//import Profile from '../Profile/Profile';
 import Footer from '../Footer/Footer';
 import Navbar from '../Navbar/Navbar';
 import io from 'socket.io-client';
-import { USER_CONNECTED, LOGOUT } from '../../Events';
+import { USER_CONNECTED } from '../../Events';
+//import { USER_CONNECTED, LOGOUT } from '../../Events';
 import ChatContainer from "../chats/ChatContainer";
+import BubbleFun1 from '../BubbleFun/BubbleFun';
 
 const socketUrl = "/";
 //const socketUrl = "http://localhost:9000";
@@ -173,7 +177,7 @@ export default class Chat extends React.Component {
                 {/* <Link to='/profile'>Go to Profile</Link> */}
                 <button className="gotoProfile" type="button" onClick={this.gotoProfile} >GoTo Profile</button>
                 <ChatContainer socket={this.state.socket} user={this.state.user} logout={this.logout} />
-
+                <BubbleFun1 />
                 <Footer></Footer>
             </div>
         );

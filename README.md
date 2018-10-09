@@ -20,7 +20,7 @@ https://bubblink.herokuapp.com/
 
 [Click here](https://bubblink.herokuapp.com/) to view the deployed version.
 
-# Links to GitHub
+# Link to GitHub
 https://github.com/rmxjohnson/VirtualChat.git
 
 ## Technologies used:

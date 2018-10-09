@@ -1,17 +1,13 @@
 import React from 'react';
-import { Route, Redirect } from 'react-router'
-import { Link, BrowserRouter } from 'react-router-dom';
+import { Redirect } from 'react-router'
+//import { Link, BrowserRouter } from 'react-router-dom';
 import axios from 'axios';
 import "./Login.css";
-import Profile from '../Profile/Profile';
+//import Profile from '../Profile/Profile';
 import Footer from '../Footer/Footer';
 import Navbar from '../Navbar/Navbar';
 import BigLogo1 from '../BigLogo/BigLogo';
 import BubbleFun1 from '../BubbleFun/BubbleFun';
-
-
-
-
 
 export default class Login extends React.Component {
 
@@ -41,24 +37,25 @@ export default class Login extends React.Component {
     // }
 
 
-
+    // handle change on input fields
     handleChange = (event) => {
         const name = event.target.name;
         const value = event.target.value;
-
         this.setState({ [name]: value });
     }
 
+    // handle submit
     onSubmit = (event) => {
         event.preventDefault();
         const email = this.state.email;
-        const password = this.state.password;
+        //const password = this.state.password;
 
         // disable the Submit button
         this.setState({
             isSubmitButtonDisabled: true
         });
 
+        // login route
         axios({
             url: '/login',
             method: 'POST',
@@ -68,19 +65,23 @@ export default class Login extends React.Component {
             }
         })
             .then((response) => {
-                alert('It is working, you are logged in');
-                console.log('Login Response = ', response);
-                console.log("login response.data = ", response.data)
+                // alert('It is working, you are logged in');
+                // console.log('Login Response = ', response);
+                // console.log("login response.data = ", response.data)
                 this.setState({
                     isButtonDisabled: false
                 });
 
+                // on valid login, get the user's profile
                 axios.get(`/profile/${email}`)
                     .then((res2) => {
-                        console.log("Profile info");
-                        console.log(res2);
+                        //  console.log("Profile info");
+                        // console.log(res2);
+
+                        // set validLoggin to redirect to community chat page
                         this.setState({ validLoggin: true, profile: res2.data });
-                        console.log("loggin boolean", this.state.validLoggin)
+
+                        //  console.log("loggin boolean", this.state.validLoggin)
                     })
                     .catch(function (error) {
                         console.log('Error getting the profile on login', error);
@@ -93,9 +94,9 @@ export default class Login extends React.Component {
                     isSubmitButtonDisabled: false
                 });
                 alert(err.response.data.message);
-                console.log('login error = ', err);
-                console.log('login error response= ', err.response.data.message);
-                console.log("error message", err.message);
+                // console.log('login error = ', err);
+                // console.log('login error response= ', err.response.data.message);
+                // console.log("error message", err.message);
             });
     }
 
@@ -103,12 +104,12 @@ export default class Login extends React.Component {
 
     render() {
 
-        console.log('State: ', this.state);
+        // console.log('State: ', this.state);
+        // redirect to community chat if valid loggin
         if (this.state.validLoggin) {
-            console.log("In the IF statement", this.state.profile);
-            // if valid LogIn, redirect to the profile page
+            // console.log("In the IF statement", this.state.profile);
+
             return (<Redirect to={{
-                // pathname: '/profile',
                 pathname: '/chat',
                 state: this.state.profile
             }} />);

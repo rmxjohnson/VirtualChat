@@ -6,6 +6,7 @@ import Messages from '../messages/Messages'
 import MessageInput from '../messages/MessageInput'
 import { values, differenceBy } from 'lodash'
 import './ChatContainer.css';
+import BubbleFun1 from '../BubbleFun/BubbleFun';
 
 export default class ChatContainer extends Component {
 	constructor(props) {
