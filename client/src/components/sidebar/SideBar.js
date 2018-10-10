@@ -75,7 +75,7 @@ export default class SideBar extends Component {
 					ref='users'
 					onClick={(e) => { (e.target === this.refs.user) && setActiveChat(null) }}>
 
-					{
+					{ 
 						activeSideBar === SideBar.type.CHATS ?
 							chats.map((chat) => {
 								if (chat.name) {
@@ -104,7 +104,7 @@ export default class SideBar extends Component {
 									/>
 								)
 							})
-					}
+					} 
 
 				</div>
 				<div className="current-user">
