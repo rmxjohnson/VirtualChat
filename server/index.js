@@ -269,6 +269,46 @@ app.post('/updateprofile', (req, res) => {
 
 });
 
+// delete user profile
+
+app.get('/deleteprofile/:email', (req, res) => {
+    console.log("Inside server - delete user profile")
+    console.log("email = ", req.params.email);
+    // collection.deleteOne({
+    //     "first_name": "Yashwant"
+    // }, function(err, results) {
+    //     console.log(results.result);
+    // });
+
+    User.deleteOne({ "email": req.params.email }, (err, result) => {
+        if (err) {
+            console.log("ERROR Deleting Profile", err);
+            res.json({
+                message: `Error deleting Profile`
+            });
+        }
+        res.json({
+            message: `SUCCESS: Profile has been deleted`
+        });
+    })
+})
+
+
+// Delete user
+//    router.get('/deleteuser/:id', function(req, res) { 
+
+//     var db = req.db;
+
+//     var uid = req.params.id.toString();
+//     var collection = db.get('usercollection');
+
+//     collection.remove({"_id":uid}, function(err, result) { 
+//         res.send( (result === 1) ? { msg: 'Deleted' } : { msg: 'error: '+ err } );
+//     });
+
+// });
+
+
 
 
 // const PORT = process.env.PORT || 3231

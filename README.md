@@ -63,15 +63,29 @@ https://github.com/rmxjohnson/VirtualChat.git
 ![communitychat.png](client/src/assets/images/communitychat.png)
 
 ## "Profile" Page
-## User can also modify their profile 
+## User can also modify their profile or delete their profile from the app
 
 ![profile.png](client/src/assets/images/profile.png)
 
 
-# Additional Features
- * xxxxxx
- * xxxxxx
- * xxxxx
- * xxxxx
- * xxxxx
- * xxxxx
+# Additional Information
+
+The app was created by the Developer team of Bradley Hersey, Rhonda Johnson, Melinda Russell, Daniel Kelly and Joseph Wancho
+
+Bubblink is an interactive app for meeting new people by chatting online in virtual chat rooms from the comfort of their own home. The User is able to create their profile to meet other individuals with similar likes and interests. 
+The app enables Users to participate in group or date chats.  
+
+Melinda Russell created the “Bubblelink” logo for this app using Adobe Illustrator. 
+
+This application uses a variety of applications, including HTML, CSS, MongoDB, Heroku, JS, jQuery, Bootstrap, Node, SocketManager and React among others specified below.
+
+Module Exports are employed to pull various data that can be used in the User profile. 
+
+This Project was bootstrapped with Create React App.
+
+This Project used react-scripts, a development dependency.
+
+All images that were used for this Project are in jpg or png format.
+
+The following folders located in Components were created using both CSS and JS: AboutUs, BigLogo, BubbleFun, Home, Layout, Login, Navbar, Navbar2, Profile, and Signup. The following folders located in Components were created using only JS: Chats, Datexx, Messages and Sidebars.  
+

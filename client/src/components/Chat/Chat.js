@@ -177,7 +177,7 @@ export default class Chat extends React.Component {
                 {/* <Link to='/profile'>Go to Profile</Link> */}
                 <button className="gotoProfile" type="button" onClick={this.gotoProfile} >GoTo Profile</button>
                 <ChatContainer socket={this.state.socket} user={this.state.user} logout={this.logout} />
-                <BubbleFun1 />
+                {/* <BubbleFun1 /> */}
                 <Footer></Footer>
             </div>
         );

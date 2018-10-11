@@ -19,3 +19,16 @@
     letter-spacing: 6px;
     text-align: center;
 }
+@media only screen and (max-width: 600px) {
+    .jumbotron {
+        width: 78%;
+        height: 49%;
+        margin: 5% 11% 0% 8%;
+        font-size: 15px;
+    }.BubblH1{
+        letter-spacing: 6px;
+       
+        font-size: 28px;
+    }
+
+}

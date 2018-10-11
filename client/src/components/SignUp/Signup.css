@@ -84,4 +84,29 @@ body {
 }
 
 
+@media only screen and (max-width: 600px) {
+    .SignUpInput {
+        height: 25%;
+        margin: 0% 0% 7% 0%;
+        width: 87%;
+    }.SignUpPP{
+        border-radius: 100%;
+        margin: 1% 0% 1% 22%;
+    }#SignUpCancel{
+        letter-spacing: 2px;
+        border-width: 4px;
+        margin-left: 2%;
+    }#SignUpSubmit{ 
+        margin: 0% 0% 7% 13%
+  
+    }
+    #myId {
+        width: 84%;
+        margin-left: 1%;
+        background: white;
+        font-size: 84%;
+        height: 13%;
+    }
+}
+
 

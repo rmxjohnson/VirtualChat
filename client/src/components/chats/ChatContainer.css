@@ -24,12 +24,14 @@
     font-size:2em;
 }
 .ChatContainer{
-    color:#cac8ee;
     display:flex;
     flex-direction:row;
     align-items:flex-start;
     height:100%;
     width:100%;
+}
+.chat-header {
+    background-color:#3992e6;
 }
 .chat-header .user-info{
     align-items:center;

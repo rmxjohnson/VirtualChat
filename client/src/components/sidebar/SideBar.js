@@ -39,20 +39,17 @@ export default class SideBar extends Component {
 
 	render() {
 		const { chats, activeChat, user, setActiveChat, logout, users } = this.props
-		const { receiver, activeSideBar } = this.state
 		console.log("In the sidebar USER = ", user);
 		console.log("In the sidebar Users array", users);
-		return (
-			<div>
-				{/* <div id="side-bar">
-					<div className="heading">
-						<div className="app-name">Chat Rooms </div>
-						<div className="menu">
 
-						</div>
-					</div>
-				</div> */}
+		const { receiver, activeSideBar } = this.state
+		return (
+			<div className ="SidebarChat">
+				<div id="side-bar">
+
+				</div>
 				<form onSubmit={this.handleSubmit} className="search">
+
 					<input placeholder="Search"
 						type="text"
 						value={receiver}
@@ -60,25 +57,40 @@ export default class SideBar extends Component {
 					<div className="plus"></div>
 				</form>
 
-
 				<div
-					onClick={() => { this.setActiveSideBar(SideBar.type.USERS) }}
-					className={`side-bar-select_option ${(activeSideBar === SideBar.type.USERS) ? 'active' : ''}`} >
-					<span>USERS</span>
+					onClick={() => { this.setActiveSideBar(SideBar.type.CHATS) }}
+					className={`side-bar-select_option ${(activeSideBar === SideBar.type.CHATS) ? 'active' : ''}`}>
+					<span>CHATS</span>
 				</div>
-
-
-
 
 				<div
 					className="users"
 					ref='users'
 					onClick={(e) => { (e.target === this.refs.user) && setActiveChat(null) }}>
 
-					{ 
+					{
 						activeSideBar === SideBar.type.CHATS ?
 							chats.map((chat) => {
 								if (chat.name) {
+									const lastMessage = chat.messages[chat.messages.length - 1];
+									const chatSideName = chat.users.find((name) => {
+										return name !== user.name
+									}) || "Community"
+									const classNames = (activeChat && activeChat.id === chat.id) ? 'active' : ''
+
+									return (
+										<div
+											key={chat.id}
+											className={`user ${classNames}`}
+											onClick={() => { setActiveChat(chat) }}
+										>
+											<div className="user-photo">{chatSideName[0].toUpperCase()}</div>
+											<div className="user-info">
+												<div className="name">{chatSideName}</div>
+											</div>
+
+										</div>
+									)
 									return (
 										<SideBarOption
 											key={chat.id}
@@ -104,8 +116,15 @@ export default class SideBar extends Component {
 									/>
 								)
 							})
-					} 
+					}
+					<div className="side-bar-select">
 
+					</div>
+					<div
+						onClick={() => { this.setActiveSideBar(SideBar.type.USERS) }}
+						className={`side-bar-select_option ${(activeSideBar === SideBar.type.USERS) ? 'active' : ''}`} >
+						<span>USERS</span>
+					</div>
 				</div>
 				<div className="current-user">
 					<span>{user}</span>
@@ -113,15 +132,8 @@ export default class SideBar extends Component {
 
 					</div>
 				</div>
-
-				<div className="side-bar-select">
-					<div
-						onClick={() => { this.setActiveSideBar(SideBar.type.CHATS) }}
-						className={`side-bar-select_option ${(activeSideBar === SideBar.type.CHATS) ? 'active' : ''}`}>
-						<span>CHATS</span>
-					</div>
-				</div>
 			</div>
 		);
 	}
 }
+

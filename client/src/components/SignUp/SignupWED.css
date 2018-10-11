@@ -1,0 +1,87 @@
+body {
+    /* background-image: url("images/background15.jpg"); */
+    background-image: url('../../assets/images/BubbleBackground.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed; 
+    background-color: pink;
+}
+
+.SignUpInput {
+    font-family: 'Fredoka One', cursive;
+    margin: 10px;
+    width: 20%;
+    height: 50px;
+    font-size: 15px;
+    text-align: center;
+    border-style: double;
+    border-color: silver;
+    border-width: 8px;
+    border-radius: 10%;
+}
+
+.SIGNUP{
+    margin-left: 15%;
+}
+.App {
+    text-align: left;
+}
+
+
+
+#myId {
+    margin-left: 20%;
+    margin: 10px;
+    width: 20%;
+    height: 50px;
+    font-size: 20px;
+    border-style: double;
+    border-color: silver;
+    border-width: 8px;
+    border-radius: 10%;
+    text-align: center;
+    font-family: 'Fredoka One', cursive;
+}
+
+#SS {
+    font-family: 'Fredoka One', cursive;
+    margin-left: 80px;
+    color: white;
+    text-align: center;
+    text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+    border:none;
+}
+
+
+#SignUpSubmit{
+    
+    border-radius: 10%;
+    color:white;
+    font-family: 'Fredoka One', cursive;
+    text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+    letter-spacing: 2px;
+    border-style: double;
+    border-color: silver;
+    border-width: 4px;
+    margin-left: 3%;
+
+    
+}
+#SignUpCancel{
+    border-radius: 10%;
+    color:white;
+    font-family: 'Fredoka One', cursive;
+    text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+    letter-spacing: 2px;
+    border-style: double;
+    border-color: silver;
+    border-width: 4px;
+    margin-left: 2%;
+}
+.SignUpPP{
+    border-radius: 100%;
+    margin: 1% 0% 1% 7%;
+}
+
+
+

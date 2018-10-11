@@ -1,7 +1,7 @@
 .profile-back {
     /* background-image: url("images/background15.jpg"); */
-    background-image: url('../../assets/images/profilebackground21.jpg');
-    background-size: 100%;
+    background-image: url('../../assets/images/blackbg.jpg');
+    background-size:cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-color: pink;
@@ -14,7 +14,6 @@
 
 .profileInput {
     font-family: 'Gloria Hallelujah', cursive;
-    /* font-family: 'Dokdo', cursive; */
     margin: 10px;
     width: 30%;
     height: 50px;
@@ -50,7 +49,7 @@
     margin-left: 15%;
 }
 
-.profile-logo {
+/* .profile-logo {
     align-content: center;
     margin-left: 40%;
     font-weight: bold;
@@ -58,7 +57,7 @@
     color: white;
     text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
     letter-spacing: 6px;
-}
+} */
 
 .ProfilePicture {
     left: 10px;
@@ -71,7 +70,20 @@
     border-radius: 100%;
     width: 400px !important;
     height: 400px !important;
-    top: 20%;
+    top: 22%;
+    left: 1%;
+}
+.DelProfBtn{
+    font-family: 'Dokdo', cursive;
+    background-color:transparent;
+    color:white;
+    font-weight: bolder;
+    /* margin-left: 77%; */
+    border: none;
+    font-size: 25px; 
+    border: ridge silver 4px;
+    background-color: red;
+	margin-left: 10%;
 }
 
 .labelProfile {
@@ -166,35 +178,186 @@ h1 span {
     /* E */
     transform: rotate(74deg);
 }
-.UpdateProfileBtn{
-    background-color: aliceblue;
-    color: black;
-}
 
 .UpdateProfileBtn{
     font-family: 'Dokdo', cursive;
-    background-color:black;
-    color:white;
+    background-color: black;
+    color: white;
     font-weight: bolder;
+    position: absolute;
+    left: 14%;
+    top: 590px;
     letter-spacing: 1%;
+    width: 185px;
+    font-size: 26px;
  
  }
  .ProfileCancelBtn{
     font-family: 'Dokdo', cursive;
-    background-color:black;
-    color:white;
+    background-color: red;
+    color: white;
     font-weight: bolder;
     letter-spacing: 1%;
+    position: absolute;
+    left: 19%;
+    top: 650px;
+    width: 128px;
+    font-size: 25px;
  }
- .GotoChatBtn{
-     
+ .DelProfBtn{
     font-family: 'Dokdo', cursive;
-    background-color:transparent;
-    color:white;
+    background-color: transparent;
+    color: white;
     font-weight: bolder;
-    
-    margin-left: 77%;
     border: none;
-    font-size: 35px; 
+    font-size: 25px;
+    border: ridge silver 4px;
+    background-color: rgb(143, 2, 2);
+    position: absolute;
+    right: 1%;
+    top: 19%;
+}
+ .GotoChatBtn{
+    font-family: 'Dokdo', cursive;
+    background-color: transparent;
+    color: white;
+    font-weight: bolder;
+    /* margin-left: 77%; */
+    border: none;
+    font-size: 25px;
+    border: ridge silver 4px;
+    background-color: black;
+    position: absolute;
+    top: 851px;
+    left: 40%;
+ } .SignOutProfile{
+    right: 550px;
+    top: 852px;
+    font-family: 'Dokdo', cursive;
+    background-color: transparent;
+    color: white;
+    font-weight: bolder;
+    border: none;
+    font-size: 25px;
+    position: absolute;
+    border: ridge silver 4px;
+    background-color: red;
+    margin-left: 0%;
+
+}
+ @media only screen and (max-width: 600px) {
+    .ProfilePicture {
+        left: -5px;
+        margin: 1% 3% 0% 8%;
+        width: 125px !important;
+        height: 125px !important;
+        top: 8%;
+    }.badge {
+        width: 91%;
+        left: -23%;
+        top: -1%;
+    }
+    
+    h1 span {
+    height: 123px;
+    width: 111px;
+    left: 34px;
+    top: 9px;
+    font-size: 50px;
+    }
+    #profile-form {
+        margin-left: 40%;
+    }.profileInput {
+        margin: -3px 1px 10px 52px;
+        width: 68%;
+        height: 22px;
+        font-size: 13px;
+        border-width: 2px;
+        
+    }.labelProfile {
+        margin-left: 38%;
+    }.GotoChatBtn{
+        font-weight: bolder;
+        position: absolute;
+        top: 571px;
+        left: 60px;
+        border: ridge silver 4px;
+        color: white;
+        margin-left: 0%;
+        width: 154px;
+
+     }.UpdateProfileBtn{
+        position: absolute;
+        top: 214px;
+        left: 30px;
+        font-size: 13px;
+        width: 100px;
+     }.SignOutProfile{
+        position: absolute;
+    top: 570px;
+    right: 24px;
+    }
+     .ProfileCancelBtn{
+        font-weight: bolder;
+        letter-spacing: 1%;
+        position: absolute;
+        top: 254px;
+        left: 54px;
+        background-color: red;
+        font-size: 15px;
+        width: 74px;
+     }.DelProfBtn{
+        font-family: 'Dokdo', cursive;
+        background-color: transparent;
+        color: white;
+        font-weight: bolder;
+        border: none;
+        font-size: 15px;
+        border: ridge silver 4px;
+        background-color: rgb(143, 2, 2);
+        position: absolute;
+        left: 1%;
+        top: 41%;
+    }
+    
+    #CITYProflie{
+        margin-left: 52%;
+    }#AGEProfile{
+        margin-left: 52%;
+    }#myId1{
+        background: transparent;
+        width: 77%;
+        margin-left: 20%;
+        color: white;
+        font-size: 84%;
+        height: 10%;
+    
+    }
+    
  }
+
+
+
+ @keyframes bounce {
+	0%, 20%, 60%, 100% {
+		-webkit-transform: translateY(0);
+		transform: translateY(0);
+	}
+
+	40% {
+		-webkit-transform: translateY(-10px);
+		transform: translateY(-10px);
+	}
+
+	80% {
+		-webkit-transform: translateY(-5px);
+		transform: translateY(-5px);
+	}
+}
+
+
+.SignOutProfile:hover {
+	animation: bounce 2s;
+} 
+
 

@@ -5,7 +5,7 @@ import axios from 'axios';
 import SelectUSState from 'react-select-us-states';
 import "./Profile.css";
 import Footer from '../Footer/Footer';
-import Navbar2 from '../Navbar2/Navbar2';
+
 //import BigLogo from '../../assets/images/Bubblink.png';
 
 export default class Profile extends React.Component {
@@ -22,7 +22,8 @@ export default class Profile extends React.Component {
             yourstate: props.location.state.yourstate,
             profilepic: props.location.state.profilepic,
             isUpdateButtonDisabled: false,
-            redirectToChat: false
+            redirectToChat: false,
+            redirectToLogin: false
         };
 
         // set state to the initial state
@@ -133,6 +134,41 @@ export default class Profile extends React.Component {
         });
     }
 
+    deleteProfile = () => {
+        // this.setState({
+        //     redirectToLogin: true
+        // });
+
+        // axios.get(`/deleteprofile/${email}`)
+        // alert("User Profile Will Be Deleted");
+
+        const choice = window.confirm("Do you really want to delete your profile?");
+        //if (confirm('Are you sure you want to delete your profile?')) {
+        if (choice == true) {
+            var currentUser = this.state.email;
+            console.log("in delete profile the current user is ", currentUser);
+            // axios.get(`/deleteprofile/${this.state.email}`)
+            axios.get(`/deleteprofile/${currentUser}`)
+
+                .then((res) => {
+                    console.log("Delete Profile info");
+                    console.log(res);
+                    alert("Successfully Deleted Profile")
+
+                    // set validLoggin to redirect to community chat page
+                    this.setState({ redirectToLogin: true });
+
+                })
+                .catch(function (error) {
+                    alert("Error Deleting Profile")
+                    console.log('Error deleting the profile', error);
+                    console.log('deleting profile error response= ', error.response.data.message);
+                });
+        } else {
+            // Do nothing!
+        }
+    }
+
 
     render() {
         // if boolean is true, redirect to the community chat page
@@ -149,6 +185,15 @@ export default class Profile extends React.Component {
             }} />);
         }
 
+        if (this.state.redirectToLogin) {
+
+            return (<Redirect to={{
+                pathname: '/login'
+            }} />);
+        }
+
+
+
 
         // console.log("I am in the profile page");
         //  console.log("profile props = ", this.props.location.state.profile);
@@ -156,7 +201,9 @@ export default class Profile extends React.Component {
         return (
             <div className="profile-back">
 
+
                 <button className="GotoChatBtn" type="button" onClick={this.gotoChat} >GoTo Chat</button>
+                <button className="DelProfBtn" type="button" onClick={this.deleteProfile} >Delete Profile</button>
                 <div id="page-wrap">
                     <div className="badge" >
                         <h1><span className="char1">Y</span><span className="char2">o</span><span className="char3">u</span><span className="char4">r</span><span className="char5"></span><span className="char6">P</span><span className="char7">r</span><span className="char8">o</span><span className="char9">f</span><span className="char10">i</span><span className="char11">l</span><span className="char12">e</span></h1>
@@ -207,15 +254,15 @@ export default class Profile extends React.Component {
                         <br />
                         <label htmlFor="" className="labelProfile">Modify your State Below</label>
                         <br />
-                        <SelectUSState id="myId" className="profileInput" placeholder="State" required onChange={this.handleChangeUSState} />
+                        <SelectUSState id="myId1" className="profileInput" placeholder="State" required onChange={this.handleChangeUSState} />
                         <br />
                     </div>
 
-
+                    <a className='SignOutProfile' href="/login">Sign Out!!</a>
                     <button className="UpdateProfileBtn" disabled={this.state.isUpdateButtonDisabled}>Update Profile</button><button type="button" onClick={this.resetFields} className="ProfileCancelBtn">Cancel</button>
 
                 </form>
-                <Navbar2 id="profile-nav"></Navbar2>
+
                 <Footer />
             </div>
         );

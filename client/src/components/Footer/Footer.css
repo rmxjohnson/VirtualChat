@@ -1,2 +1,12 @@
 footer{background-color: grey;
-    text-align: center;}
+
+    /* margin-top: 400px; */
+
+text-align: center;}
+
+
+@media only screen and (max-width: 600px) {
+   footer{
+       margin-top: 40%;
+   }
+}

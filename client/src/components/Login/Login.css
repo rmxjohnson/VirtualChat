@@ -3,7 +3,6 @@ body {
     background-image: url('../../assets/images/BubbleBackground.png');
 }
 .LogInSubmitBtn {
-
     border-radius: 10%;
     color:white;
     font-family: 'Fredoka One', cursive;
@@ -14,14 +13,10 @@ body {
     border-width: 4px;
     margin-left: 2%;
     border-width: 4px;
-    margin-left: 17%;
+    margin-left: 22%;
 
 }
 
-Footer{
-    
-    margin-top: 500px;
-}
 
 .LoginInput{
      margin: 10px;
@@ -34,4 +29,14 @@ Footer{
     border-width: 8px;
     border-radius: 10%;
     margin-left: 15%;
+}
+@media only screen and (max-width: 600px) {
+    .LoginInput{
+        width: 76%;
+        margin: 2% 5% 5% 13%;
+   }
+   .LogInSubmitBtn {
+    margin-left: 40%;
+
+}
 }

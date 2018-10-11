@@ -24,12 +24,14 @@
     color:#fff;
     background-image: url('../../assets/images/BarBackground.jpg');
     background-repeat: no-repeat;
+    background-size: cover;
 
 }
 .message-container{
     display:flex;
     justify-content:flex-start;
     min-height:20px;
+    max-height: 50px;
     margin:10px 15px;
     animation:.65s ease-out 0s show;
 }
@@ -47,7 +49,7 @@
     border-radius:5px;
     border-top-left-radius:0;
     box-sizing:border-box;
-    color:#5dfaff;
+    color:#222222;
     height:100%;
     padding:10px 15px;
     position:relative}

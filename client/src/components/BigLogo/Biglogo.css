@@ -6,3 +6,14 @@
     width: 480px;
     top: 150px
 }
+@media only screen and (max-width: 600px) {
+    .BigLogo{
+        display: none;
+        visibility: hidden;
+    }
+}
+/* @media only screen and (max-width: 900px) {
+    .BigLogo{
+        left: 817px;
+    }  
+} */
