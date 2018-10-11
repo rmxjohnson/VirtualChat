@@ -121,7 +121,12 @@ export default class SideBar extends Component {
 					</div>
 				</div>
 				<div className="current-user">
-					<span>{user}</span>
+
+					<span>
+						<ul>
+							{users.map(p => <li key={p.id}>{p.name}</li>)}
+						</ul>
+					</span>
 					<div onClick={() => { logout() }} title="Logout" className="logout">
 
 					</div>
