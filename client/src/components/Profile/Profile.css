@@ -186,7 +186,7 @@ h1 span {
     font-weight: bolder;
     position: absolute;
     left: 14%;
-    top: 590px;
+    top: 567px;
     letter-spacing: 1%;
     width: 185px;
     font-size: 26px;
@@ -200,7 +200,7 @@ h1 span {
     letter-spacing: 1%;
     position: absolute;
     left: 19%;
-    top: 650px;
+    top: 620px;
     width: 128px;
     font-size: 25px;
  }
@@ -231,19 +231,24 @@ h1 span {
     top: 851px;
     left: 40%;
  } .SignOutProfile{
-    right: 550px;
+    right: 450px;
     top: 852px;
     font-family: 'Dokdo', cursive;
     background-color: transparent;
     color: white;
+   
     font-weight: bolder;
     border: none;
     font-size: 25px;
     position: absolute;
     border: ridge silver 4px;
     background-color: red;
-    margin-left: 0%;
 
+
+}
+option{
+    background: #000;
+    color:white;
 }
  @media only screen and (max-width: 600px) {
     .ProfilePicture {
@@ -325,13 +330,12 @@ h1 span {
     }#AGEProfile{
         margin-left: 52%;
     }#myId1{
-        background: transparent;
+        background: #000;
         width: 77%;
         margin-left: 20%;
-        color: white;
+       color: rgb(255, 255, 255);
         font-size: 84%;
         height: 10%;
-    
     }
     
  }

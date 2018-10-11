@@ -16,11 +16,11 @@ Daniel Kelley, Brad Hersey, Joe Wancho, Melinda Russell, Rhonda Johnson
 Bubblink is an app that allows users to develop relationships with others from the comfort of their own home.
 
 # Link to deployed project
-https://bubblink.herokuapp.com/
 
 [Click here](https://bubblink.herokuapp.com/) to view the deployed version.
 
 # Link to GitHub
+
 https://github.com/rmxjohnson/VirtualChat.git
 
 ## Technologies used:
