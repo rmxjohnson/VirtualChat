@@ -25,8 +25,6 @@ var UserSchema = new Schema({
     },
     age: {
         type: Number,
-        // min: 18,
-        // max: 150,
         required: true
     },
     city: {

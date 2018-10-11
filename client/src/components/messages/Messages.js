@@ -26,8 +26,8 @@ export default class Messages extends Component {
 
 	render() {
 		const { messages, user, typingUsers } = this.props
-		console.log("Messages in messages.js", messages);
-		console.log(user);
+		// console.log("Messages in messages.js", messages);
+		// console.log(user);
 
 		return (
 			<div ref='container'
@@ -35,8 +35,8 @@ export default class Messages extends Component {
 				<div className="thread">
 					{
 						messages.map((mes) => {
-							console.log("message id ", mes.id);
-							console.log(mes.message);
+							// console.log("message id ", mes.id);
+							// console.log(mes.message);
 							return (
 								<div
 									key={mes.id}

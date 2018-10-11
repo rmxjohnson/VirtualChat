@@ -14,8 +14,8 @@ export class SideBarOption extends PureComponent {
     }
     render() {
         const { active, name, onClick } = this.props
-        console.log("Sidebar options active = ", active);
-        console.log("Sidebar options name = ", name);
+        // console.log("Sidebar options active = ", active);
+        // console.log("Sidebar options name = ", name);
         return (
             <div
                 className={`user ${active}`}

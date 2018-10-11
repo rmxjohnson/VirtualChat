@@ -15,19 +15,17 @@ export default class SideBar extends Component {
 		this.state = {
 			receiver: "",
 			activeSideBar: SideBar.type.CHATS
-
 		}
-		// this.addChatForuser = this.addChatForuser.bind(this);
 	}
 	handleSubmit = (e) => {
 		e.preventDefault()
 		const { receiver } = this.state
 		const { onSendPrivateMessage } = this.props
 		onSendPrivateMessage(receiver);
-		//console.log(receiver)
+
 	}
 	addChatForuser = (username) => {
-		console.log("I am inside")
+
 		this.setActiveSideBar(SideBar.type.CHATS)
 		this.props.onSendPrivateMessage(username)
 	}
@@ -39,9 +37,6 @@ export default class SideBar extends Component {
 
 	render() {
 		const { chats, activeChat, user, setActiveChat, logout, users } = this.props
-		console.log("In the sidebar USER = ", user);
-		console.log("In the sidebar Users array", users);
-
 		const { receiver, activeSideBar } = this.state
 		return (
 			<div className="SidebarChat">
@@ -107,7 +102,6 @@ export default class SideBar extends Component {
 
 							:
 							differenceBy(users, [user], 'name').users.map((otherUser) => {
-								console.log(users)
 								return (
 									<SideBarOption
 										key={otherUser.id}

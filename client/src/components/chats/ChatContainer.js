@@ -79,13 +79,9 @@ export default class ChatContainer extends Component {
 		this.setState({ chats: newChats})
 	}*/
 
-
-
-
 	resetChat = (chat) => {
 		return this.addChat(chat, true)
 	}
-
 
 	addChat = (chat, reset = false) => {
 		const { socket } = this.props
@@ -97,7 +93,7 @@ export default class ChatContainer extends Component {
 		const messageEvent = `${MESSAGE_RECIEVED}-${chat.id}`
 		const typingEvent = `${TYPING}-${chat.id}`
 
-		console.log("add chate event", MESSAGE_RECIEVED, chat);
+		console.log("add chat event", MESSAGE_RECIEVED, chat);
 		socket.on(typingEvent, this.updateTypingInChat(chat.id))
 		socket.on(messageEvent, this.addMessageToChat(chat.id))
 	}

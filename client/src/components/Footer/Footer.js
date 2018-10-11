@@ -7,14 +7,11 @@ function Footer(props) {
         <footer className="page-footer">
             <div className="footer-copyright">
                 <div className="container center">
-                    © 2018 Mel,Joe,Rhonda,Daniel,Brad
+                    © 2018 Mel, Joe, Rhonda, Daniel, Brad
         </div>
             </div>
         </footer>
     )
 }
-
-
-
 
 export default Footer;

@@ -1,27 +1,19 @@
 import React from 'react';
-//import React, { Component } from 'react';
-//import { Link, BrowserRouter } from 'react-router-dom';
 import './Chat.css';
-//import { Route, Redirect } from 'react-router'
 import { Redirect } from 'react-router'
-//import axios from 'axios';
-//import Profile from '../Profile/Profile';
 import Footer from '../Footer/Footer';
 import Navbar from '../Navbar/Navbar';
 import io from 'socket.io-client';
 import { USER_CONNECTED } from '../../Events';
-//import { USER_CONNECTED, LOGOUT } from '../../Events';
 import ChatContainer from "../chats/ChatContainer";
 import BubbleFun1 from '../BubbleFun/BubbleFun';
 
-const socketUrl = "/";
+
 //const socketUrl = "http://localhost:9000";
-
-
-
+//  needed to deploy to heroku
+const socketUrl = "/";
 
 export default class Chat extends React.Component {
-
 
     constructor(props) {
         super(props);
@@ -40,25 +32,6 @@ export default class Chat extends React.Component {
             socket: null,
             user: props.location.state.user
         }
-        // };
-
-        // set state to the initial state
-        //this.state = this.currentProfile;
-        // this.state = { ...this.initialState };
-        // const originalState = this.state;
-        console.log("In the constructor for CHAT", this.props.location) //undefined
-
-        console.log("user ", this.props.location.state.user);
-        console.log("email ", this.props.location.state.email);
-        console.log("password ", this.props.location.state.password);
-        console.log("yourname ", this.props.location.state.yourname);
-        console.log("city ", this.props.location.state.city);
-        console.log("age ", this.props.location.state.age);
-        console.log("yourstate ", this.props.location.state.yourstate);
-        console.log("profilepic ", this.props.location.state.profilepic);
-        console.log("This.state in the chat room = ", this.state);
-
-        // console.log("Original State = ", originalState);
     };
 
     componentDidMount = () => {
@@ -66,13 +39,8 @@ export default class Chat extends React.Component {
         socket.emit('VERIFY_USER', this.state.user, this.verifyUser)
     };
 
+    // set flag to redirect to profile page
     gotoProfile = () => {
-        // event.preventDefault();
-        console.log("I am in goto Profile function");
-
-
-
-
         this.setState({
             redirectToProfile: true
         });
@@ -87,7 +55,6 @@ export default class Chat extends React.Component {
         if (isUser) {
             // this.setError("User name taken")
         } else {
-            // this.setError("")
             this.setUser(user)
         }
     }
@@ -103,47 +70,9 @@ export default class Chat extends React.Component {
         this.setState({ socket })
     }
 
-    // initSocket = () => {
-    //     const socket = io(socketUrl)
-
-    //     socket.on('connect', () => {
-    //         if (this.state.user) {
-    //             this.reconnect(socket)
-    //         }
-    //         else {
-    //             console.log("Connected from chat");
-    //         }
-
-    //     })
-
-    //     this.setState({ socket })
-    // }
-
-    // reconnect = (socket) => {
-    //     socket.emit(VERIFY_USER, this.state.user.name, ({ isUser, user }) => {
-    //         if (isUser) {
-    //             this.setState({ user: null })
-    //         }
-    //         else {
-    //             this.setUser(user)
-    //         }
-    //     })
-    // }
-
-    // reconnect = (socket) => {
-    //     socket.emit(VERIFY_USER, this.state.user.name, ({ isUser, user }) => {
-    //         if (isUser) {
-    //             this.setState({ user: null })
-    //         }
-    //         else {
-    //             this.setUser(user)
-    //         }
-    //     })
-    // }
 
     setUser = (user) => {
         const { socket } = this.state
-        // this.setState({ user: user });
         socket.emit(USER_CONNECTED, user);
     }
 
@@ -152,15 +81,13 @@ export default class Chat extends React.Component {
     //     const { socket } = this.state
     //     socket.emit(LOGOUT)
     //     this.setState({ user: null })
-
     // }
 
     render() {
         if (this.state.redirectToProfile) {
-            console.log("In the IF statement in the chat component", this.state.profile);
+
             // if valid LogIn, redirect to the profile page
             return (<Redirect to={{
-                //pathname: '/profile',
                 pathname: '/profile',
                 state: this.state.profile
             }} />);
@@ -168,16 +95,8 @@ export default class Chat extends React.Component {
         return (
             <div>
                 <Navbar></Navbar>
-                {/*<h1 className="HUMP"><span className="RecluseWord">Recluse</span><span className="LetLooseWord"> Let Loose</span></h1>
-                <h1>my chat room</h1>
-                <Link to='/'>Go to Home</Link>
-                <br />
-                <Link to='/signup'>Go to SignUp</Link>
-                <br /> */}
-                {/* <Link to='/profile'>Go to Profile</Link> */}
                 <button className="gotoProfile" type="button" onClick={this.gotoProfile} >GoTo Profile</button>
                 <ChatContainer socket={this.state.socket} user={this.state.user} logout={this.logout} />
-                {/* <BubbleFun1 /> */}
                 <Footer></Footer>
             </div>
         );

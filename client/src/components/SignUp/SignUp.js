@@ -1,9 +1,7 @@
 import React from 'react';
-//import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { Redirect } from 'react-router'
 import SelectUSState from 'react-select-us-states';
-//import ImageUploader from 'react-images-upload';
 import 'react-images-uploader/styles.css';
 import 'react-images-uploader/font.css';
 import Navbar from '../Navbar/Navbar';
@@ -28,31 +26,6 @@ export default class Signup extends React.Component {
         redirectToLogin: false
     };
 
-    // constructor(props) {
-    //     super(props);
-
-    //     this.onDrop = this.onDrop.bind(this);
-    // }
-
-    // onDrop(picture) {
-    //     this.setState({
-    //         pictures: this.state.pictures.concat(picture),
-    //     });
-    // }
-
-    // componentDidMount = () => {
-
-    // }
-
-    // constructor(props) {
-    //     super(props);
-
-    //     this.setNewValue = this.setNewValue.bind(this);
-    // }
-
-    // setNewValue(newValue) {
-    //     console.log('this is the State code:' + newValue);
-    // }
 
     // handle changes on form fields
     handleChange = (event) => {
@@ -63,19 +36,12 @@ export default class Signup extends React.Component {
 
     // handle change on the states dropdown
     handleChangeUSState = (event) => {
-        //console.log("event : ", event);
-        // const name = event.target.name;
-        // console.log("Handle Change name ", name);
         const value = event;
-        // console.log("Handle change Value: ", value);
-
         this.setState({ yourstate: value });
-        // console.log('Changing State of residence: ', this.state);
     }
 
     // clear the form fields
     clearFields = () => {
-        // event.preventDefault();
         console.log("I am in clear fields");
         document.getElementById("signup-form").reset();
         this.setState({
@@ -92,13 +58,9 @@ export default class Signup extends React.Component {
 
     onSubmit = (event) => {
         event.preventDefault();
-        //const email = this.state.email;
-        // const password = this.state.password;
         this.setState({
             isSubmitButtonDisabled: true
         });
-
-        // console.log("data to submit", this.state);
 
         // signup route
         axios({
@@ -117,25 +79,15 @@ export default class Signup extends React.Component {
         })
 
             .then((response) => {
-                // console.log("response modified", response);
-
-                //  console.log(' Response.data.status', response.data.status);
                 switch (response.data.status) {
-                    // console.log(' Response.data.status', response.status);
-                    // switch (response.status) {
                     case 200:
-                        alert('SignUp Successful');
-                        // this.setState({
-                        //     isSubmitButtonDisabled: false
-                        // });
+                        // alert('SignUp Successful');
 
                         // set boolean for redirectToLogin page
                         this.setState({ redirectToLogin: true });
-                        //this.clearFields();
-                        // console.log("After ClearFields");
                         break;
                     case 500:
-                        alert('Email already used.  Enter another email');
+                        alert('Email already used.  Enter a different email');
                         break;
                     default:
                         alert('Other status: ', response.data.status);
@@ -144,11 +96,9 @@ export default class Signup extends React.Component {
                     isSubmitButtonDisabled: false
                 });
 
-                // alert('SignUp Request was successful');
-                // console.log("SignUp Response = ", response);
+
             })
             .catch((err) => {
-                // console.log('catch error', err);
                 alert('Error in SignUp Request');
                 this.setState({
                     isSubmitButtonDisabled: false
@@ -159,11 +109,9 @@ export default class Signup extends React.Component {
 
     render() {
 
-        //console.log('State: ', this.state);
-        // redirect to login after successful submit
+
         if (this.state.redirectToLogin) {
-            // console.log("In the IF statement in the signup component");
-            // if valid LogIn, redirect to the profile page
+
             return (<Redirect to={{
                 pathname: '/login'
             }} />);

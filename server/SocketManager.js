@@ -11,13 +11,7 @@ let communityChat = createChat(isCommunity, true);
 module.exports = function (socket) {
 	const io = require('./index.js');
 
-	console.log('socket connection', socket.id)
-
-	//console.log("Socket Id:" + socket.id);
-
 	let sendMessageToChatFromUser;
-
-	// let sendTypingFromUser;
 
 
 	socket.on(VERIFY_USER, (nickname, callback) => {
@@ -30,20 +24,19 @@ module.exports = function (socket) {
 
 
 	socket.on(USER_CONNECTED, (user) => {
-		console.log('stock')
+
 		user.socketId = socket.id
 		connectedUsers = addUser(connectedUsers, user)
 		socket.user = user
 
 		sendMessageToChatFromUser = sendMessageToChat(user.name)
-		// sendTypingFromUser = sendTypingToChat(user.name)
+
 		io.emit(USER_CONNECTED, connectedUsers)
 		console.log(connectedUsers);
 
 
 
 	})
-
 
 	socket.on('disconnect', () => {
 		if ("user" in socket) {
@@ -58,13 +51,6 @@ module.exports = function (socket) {
 
 
 
-	// socket.on(LOGOUT, () => {
-	// 	connectedUsers = removeUser(connectedUsers, socket.user.name)
-	// 	io.emit(USER_DISCONNECTED, connectedUsers)
-	// 	console.log("Disconnect", connectedUsers);
-
-	// })
-
 	//Get Community Chat
 	socket.on(COMMUNITY_CHAT, (callback) => {
 		console.log('community chat')
@@ -75,10 +61,6 @@ module.exports = function (socket) {
 		sendMessageToChatFromUser(chatId, message)
 	})
 
-	// socket.on(TYPING, ({ chatId, isTyping }) => {
-
-	// 	sendTypingFromUser(chatId, isTyping)
-	// })
 
 	socket.on(PRIVATE_MESSAGE, ({ receiver, sender }) => {
 		if (receiver in connectedUsers) {
@@ -86,23 +68,8 @@ module.exports = function (socket) {
 			const receiverSocket = connectedUsers[receiver].socketId
 			socket.to(receiverSocket).emit(PRIVATE_MESSAGE, newChat)
 			socket.emit(PRIVATE_MESSAGE, newChat)
-		}/*else{
-	if(!(receiver in activeChat.users)) {
-		activeChat.users
-		.filter(user => user in connectedUsers)
-		.map( user => connectedUsers[user])
-		.map(user => {
-			socket.to(user.socketId).emit(NEW_CHAT_USER, { chatID: activeChat.id, newUser: receiver})
-
-		})
-		socket.emit(NEW_CHAT_USER, { chatId: activeChat.id, newUser: receiver})
-	}
-	socket.to(receiverSocket).emit(PRIVATE_MESSAGE, activeChat)
-}*/
+		}
 	})
-
-
-
 
 
 	function sendTypingToChat(user) {

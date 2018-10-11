@@ -17,11 +17,11 @@ export default class MessageInput extends Component {
 		e.preventDefault()
 		this.sendMessage()
 		this.setState({ message: "" })
-		console.log("IN THE HANDLE SUBMIT");
+		//console.log("IN THE HANDLE SUBMIT");
 	}
 
 	sendMessage = () => {
-		console.log("IN THE SENDMESSAGE");
+		//console.log("IN THE SENDMESSAGE");
 		this.props.sendMessage(this.state.message)
 
 	}
@@ -41,7 +41,7 @@ export default class MessageInput extends Component {
 
 
 	startCheckingTyping = () => {
-		console.log("Typing");
+		//console.log("Typing");
 		this.typingInterval = setInterval(() => {
 			if ((Date.now() - this.lastUpdateTime) > 300) {
 				this.setState({ isTyping: false })
@@ -52,7 +52,7 @@ export default class MessageInput extends Component {
 
 
 	stopCheckingTyping = () => {
-		console.log("Stop Typing");
+		//console.log("Stop Typing");
 		if (this.typingInterval) {
 			clearInterval(this.typingInterval)
 			this.props.sendTyping(false)

@@ -11,17 +11,8 @@ import Login from './components/Login/Login.js';
 import SignUp from './components/SignUp/SignUp.js';
 import Profile from './components/Profile/Profile.js';
 import Chat from './components/Chat/Chat.js';
-//import BubbleFun1 from './components/BubbleFun/BubbleFun';
 
-// function DummyComponent() {
-//   return <h2>Hello World</h2>;
-// }
-
-// function DummyComponent1() {
-//   return <h2>About - welcome to my app</h2>;
-// }
-
-// ProtectedRoute does not work
+// ProtectedRoute - not used at this time
 const ProtectedRoute = (props) => {
   // props: path & component
 
@@ -49,34 +40,16 @@ const PrivateRoute = ({ component: Component, path: url }) => (
 
 class App extends Component {
 
-  // componentDidMount = () => {
-  //   //Fetch
-  //   fetch('/about')
-  //     .then((data) => data.json())
-  //     .then(function (data) {
-  //       console.log('Data: ', data);
-  //     })
-
-  //     .catch(() => {
-
-  //     });
-
-
-  // };
 
   render() {
     return (
       <div className="App">
-        {/* <BubbleFun1 /> */}
-        {/* <Route exact path='/' component={DummyComponent} />
-        <Route exact path='/about' component={DummyComponent1} /> */}
-        {/* <Route exact path='/' component={DummyComponent} /> */}
+
         <Route exact path='/' component={Home} />
         <Route path='/login' component={Login} />
         <Route path='/signup' component={SignUp} />
         <Route exact path='/profile' component={Profile} />
         <Route exact path='/chat' component={Chat} />
-        {/* <PrivateRoute path='/profile' component={Profile} /> */}
 
       </div>
     );

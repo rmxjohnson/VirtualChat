@@ -1,12 +1,10 @@
 import React from 'react';
-//import { Link } from 'react-router-dom';
 import { Redirect } from 'react-router'
 import axios from 'axios';
 import SelectUSState from 'react-select-us-states';
 import "./Profile.css";
 import Footer from '../Footer/Footer';
 
-//import BigLogo from '../../assets/images/Bubblink.png';
 
 export default class Profile extends React.Component {
 
@@ -28,20 +26,6 @@ export default class Profile extends React.Component {
 
         // set state to the initial state
         this.state = this.initialState;
-        // this.state = { ...this.initialState };
-        // const originalState = this.state;
-        // console.log("In the constructor", this.props.location) //undefined
-
-        // console.log("name ", this.props.location.state.user);
-        // console.log("email ", this.props.location.state.email);
-        // console.log("password ", this.props.location.state.password);
-        // console.log("yourname ", this.props.location.state.yourname);
-        // console.log("city ", this.props.location.state.city);
-        // console.log("age ", this.props.location.state.age);
-        // console.log("yourstate ", this.props.location.state.yourstate);
-        // console.log("profilepic ", this.props.location.state.profilepic);
-
-        // console.log("Original State = ", originalState);
     }
 
     // handle changes on form fields
@@ -53,22 +37,13 @@ export default class Profile extends React.Component {
 
     // handle change for state dropdown
     handleChangeUSState = (event) => {
-        //console.log("us state event : ", event);
-        // const name = event.target.name;
-        // console.log("Handle Change name ", name);
         const value = event;
-        // console.log("Handle change state Value: ", value);
 
         this.setState({ yourstate: value });
-        // console.log('Changing State of residence: ', this.state);
     }
 
     // reset fields to initial values when 'Cancel'
     resetFields = () => {
-        // event.preventDefault();
-        // console.log("I am in reset fields");
-        // console.log('Initial State = ', this.initialState);
-        // console.log('Initial State user= ', this.initialState.user);
         this.setState(this.initialState);
     }
 
@@ -80,8 +55,6 @@ export default class Profile extends React.Component {
         this.setState({
             isUpdateButtonDisabled: true
         });
-
-        // console.log("data to submit to change profile", this.state);
 
         // route to update profile
         axios({
@@ -99,14 +72,9 @@ export default class Profile extends React.Component {
         })
 
             .then((response) => {
-                // console.log("response modified", response);
-
-                // console.log(' Response.data.status', response.status);
 
                 // Successful update message
                 alert(response.data.message);
-                // console.log("Change Profile Response = ", response);
-                //  console.log("Change profile message = ", response.data.message);
 
                 // enable the update button
                 this.setState({
@@ -115,11 +83,10 @@ export default class Profile extends React.Component {
 
                 // reset the initial state to the current updated state
                 this.initialState = this.state;
-                // console.log("New Initial State = ", this.initialState);
+
             })
             .catch((err) => {
-                //console.log('catch error', err);
-                alert('Error in profile change  Request');
+                alert('Error in profile update request');
             });
         (() => {
             ("h1").lettering();
@@ -127,7 +94,7 @@ export default class Profile extends React.Component {
 
     }
 
-    // set boolean for redirect to community chat
+    // set flag for redirect to community chat
     gotoChat = () => {
         this.setState({
             redirectToChat: true
@@ -135,24 +102,13 @@ export default class Profile extends React.Component {
     }
 
     deleteProfile = () => {
-        // this.setState({
-        //     redirectToLogin: true
-        // });
 
-        // axios.get(`/deleteprofile/${email}`)
-        // alert("User Profile Will Be Deleted");
+        const choice = window.confirm("Are you sure you want to delete your profile?");
 
-        const choice = window.confirm("Do you really want to delete your profile?");
-        //if (confirm('Are you sure you want to delete your profile?')) {
         if (choice == true) {
             var currentUser = this.state.email;
-            console.log("in delete profile the current user is ", currentUser);
-            // axios.get(`/deleteprofile/${this.state.email}`)
             axios.get(`/deleteprofile/${currentUser}`)
-
                 .then((res) => {
-                    console.log("Delete Profile info");
-                    console.log(res);
                     alert("Successfully Deleted Profile")
 
                     // set validLoggin to redirect to community chat page
@@ -175,9 +131,6 @@ export default class Profile extends React.Component {
         if (this.state.redirectToChat) {
             // send user profile info to community chat page
             var profile = this.state;
-            // console.log("State In the IF statement of the profile page", this.state);
-
-            // console.log("variable profile In the IF statement of the profile page", profile);
 
             return (<Redirect to={{
                 pathname: '/chat',
@@ -194,13 +147,8 @@ export default class Profile extends React.Component {
 
 
 
-
-        // console.log("I am in the profile page");
-        //  console.log("profile props = ", this.props.location.state.profile);
-        // console.log('Render State: ', this.state);
         return (
             <div className="profile-back">
-
 
                 <button className="GotoChatBtn" type="button" onClick={this.gotoChat} >GoTo Chat</button>
                 <button className="DelProfBtn" type="button" onClick={this.deleteProfile} >Delete Profile</button>
