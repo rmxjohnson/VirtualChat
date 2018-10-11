@@ -31,7 +31,6 @@ https://github.com/rmxjohnson/VirtualChat.git
 * CSS3 including CSS grid
 * HTML5
 
-
 * Node Packages:
   * axios
   * body-parser
@@ -44,8 +43,7 @@ https://github.com/rmxjohnson/VirtualChat.git
   * react-dom
   * react-select-us-states
   * socket.io
-  * uuid
- 
+  * uuid 
 
 ## "SignUp" Page
 ## New Users must sign up for an account
